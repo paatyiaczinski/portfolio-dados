@@ -1,17 +1,94 @@
 # 📊 Análise Técnica – Projeto de Marketing
 
-Este documento consolida as principais métricas de negócio, seus fundamentos teóricos e como foram implementadas em DAX na análise de marketing. Também inclui tabelas auxiliares e decisões de modelagem que orientaram o desenvolvimento do dashboard.
+## 1. 📥 Origem dos Dados
+
+Os dados utilizados neste projeto são fictícios e foram fornecidos em um arquivo `.csv` chamado `dados_marketing.csv`.  
+Eles representam informações de clientes, histórico de compras, respostas a campanhas e hábitos de consumo entre os anos de 2022 e 2023.
 
 ---
 
-## 🎯 Objetivos
+## 2. 🧾 Dicionário de Dados e Estrutura das Tabelas
 
-- Compreender o comportamento do cliente por meio da segmentação RFM.
-- Avaliar a eficácia e rentabilidade das campanhas de marketing.
-- Acompanhar KPIs como ROI, CAC e Taxa de Conversão.
-- Documentar decisões técnicas e de modelagem para futuras evoluções.
+### Tabelas do Modelo
+
+O modelo de dados inclui as seguintes tabelas:
+
+- **DadosMarketing**: Tabela principal com informações do cliente, comportamento de compra e gastos.
+
+| Coluna                          | Tipo de Dado | Descrição                                                                 |
+|--------------------------------|--------------|---------------------------------------------------------------------------|
+| ID                             | Inteiro      | Identificador único do cliente                                            |
+| Ano Nascimento                 | Inteiro      | Ano de nascimento do cliente                                              |
+| Escolaridade                   | Texto        | Grau de escolaridade do cliente                                           |
+| Estado Civil                   | Texto        | Estado civil do cliente                                                   |
+| Salario Anual                  | Numérico     | Faixa de salário anual (pode conter valores nulos)                        |
+| Filhos em Casa                 | Inteiro      | Quantidade de filhos que moram com o cliente                              |
+| Dias Desde Ultima Compra       | Inteiro      | Quantidade de dias desde a última compra realizada                        |
+| Gasto com Alimentos            | Numérico     | Valor gasto em alimentos                                                  |
+| Gasto com Brinquedos           | Numérico     | Valor gasto em brinquedos                                                 |
+| Gasto com Eletrônicos          | Numérico     | Valor gasto em eletrônicos                                                |
+| Gasto com Móveis               | Numérico     | Valor gasto em móveis                                                     |
+| Gasto com Utilidades           | Numérico     | Valor gasto em utilidades domésticas                                      |
+| Gasto com Vestuário            | Numérico     | Valor gasto em vestuário                                                  |
+| Numero de Compras na Loja      | Inteiro      | Compras feitas em loja física                                             |
+| Numero de Compras via Catálogo | Inteiro      | Compras feitas via catálogo                                               |
+| Numero de Compras na Web       | Inteiro      | Compras feitas pela internet                                              |
+| Numero de Compras com Desconto | Inteiro      | Compras realizadas com cupons/descontos                                   |
+| Comprou                        | Texto        | Indica se realizou compra após a campanha ("Sim" ou "Não")                |
+| Compra na Campanha 1 a 5       | Texto        | Indica se comprou em cada campanha específica ("Sim" ou "Não")            |
+| RFM_Score                      | Texto        | CALCULADO Score RFM (Recência, Frequência e Monetário)                    |
+| Idade                          | Inteiro      | Coluna calculada com base no ano atual - ano de nascimento                |
+| Faixa Etária                   | Texto        | Coluna categorizando a idade por faixa (18-30, 31-40, etc.)               |
 
 ---
+
+- **CustosCampanhas**: Tabela auxiliar criada para simular os custos de cada campanha de marketing.
+
+| Campanha     | Custo   |
+|--------------|---------|
+| Campanha 1   | 10.000  |
+| Campanha 2   | 8.000   |
+| Campanha 3   | 5.000   |
+| Campanha 4   | 3.000   |
+| Campanha 5   | 2.000   |
+
+Essa tabela é utilizada no cálculo de ROI e CAC de forma dinâmica por campanha.
+
+---
+
+- **RFM_Segmentos**: Tabela auxiliar que traduz os scores da coluna `RFM_Score` em perfis de cliente.
+
+| RFM_Score | Segmento                     |
+|-----------|------------------------------|
+| 333       | Cliente VIP                  |
+| 332       | Cliente Leal                 |
+| 331       | Cliente Potencial            |
+| 221       | Cliente Promissor            |
+| 211       | Novo Cliente                 |
+| 111       | Cliente Inativo              |
+| 311       | Cliente em Recuperação       |
+| 133       | Cliente Impulsivo            |
+| 123       | Cliente com Baixo Engajamento|
+
+---
+
+## 3. 🧹 Tratamento e Preparação dos Dados
+
+Durante o processo de limpeza e transformação dos dados, foram aplicadas as seguintes ações:
+
+- Preenchimento de valores nulos da coluna **Salario Anual** com a média da coluna.
+- Criação da coluna **Idade** a partir do ano atual e ano de nascimento.
+- Criação da coluna **Faixa Etária** com base na idade.
+- Criação da coluna **RFM_Score** para segmentação de clientes com base em Recência, Frequência e Monetário.
+- Criação da tabela **CustosCampanhas** para possibilitar cálculo de ROI e CAC.
+- Criação da tabela **RFM_Segmentos** para análise qualitativa dos perfis.
+- Verificação de **outliers** com gráficos de dispersão; mantivemos os dados por representarem perfis extremos relevantes.
+
+---
+
+## 4. 🧠 Principais Fórmulas DAX Criadas
+
+[As fórmulas DAX estão detalhadas separadamente no arquivo `formulas.dax`.]
 
 ## 📐 Métrica: Taxa de Conversão
 
@@ -157,26 +234,10 @@ Concentrar os scores de Recência, Frequência e Monetário em uma única coluna
 
 ---
 
-## 📋 Tabela Auxiliar: RFM_Segmentos
+## 🔭 Melhorias Futuras
 
-Para interpretar os códigos numéricos da coluna `RFM_Score`, foi criada uma tabela auxiliar com segmentações pré-definidas:
-
-| RFM_Score | Segmento           |
-|-----------|--------------------|
-| 333       | Cliente VIP        |
-| 332       | Cliente Leal       |
-| 311       | Cliente em Risco   |
-| 221       | Cliente Promissor  |
-| 111       | Cliente Inativo    |
-
-Essa tabela está relacionada com a coluna `RFM_Score` da base principal e é usada em tooltips, segmentações e visuais categorizados.
-
----
-
-## 🚧 Melhorias Futuras
-
-- Adicionar a métrica de Lifetime Value (CLV).
-- Simular detecção de churn com base na recência.
-- Adicionar segmentação visual por país e canal.
-- Testar modelos de clusterização ou pontuação por perfil.
-- Enriquecer a documentação com diagramas e explicações visuais.
+- Criar métricas de Lifetime Value (CLV).
+- Aplicar clustering com base no score RFM.
+- Aprofundar análise por canal de compra.
+- Avaliar sazonalidade nas campanhas.
+- Adicionar explicações visuais de cada métrica (tooltips ou imagens).

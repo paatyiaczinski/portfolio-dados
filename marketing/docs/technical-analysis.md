@@ -1,113 +1,125 @@
 # 📊 Technical Analysis – Marketing Project
 
-This document consolidates the main business metrics, their theoretical foundations, and how they were implemented using DAX in the marketing analysis. It also includes auxiliary tables and modeling decisions that guided the development of the dashboard.
+## 1. 📥 Data Source
+
+The data used in this project is fictitious and provided in a `.csv` file named `dados_marketing.csv`.  
+It represents customer information, purchase history, campaign responses, and consumption habits between the years 2022 and 2023.
 
 ---
 
-## 🎯 Objectives
+## 2. 🧾 Data Dictionary and Table Structure
 
-- Understand customer behavior through segmentation (RFM).
-- Evaluate the effectiveness and profitability of marketing campaigns.
-- Track KPIs such as ROI, CAC, and Conversion Rate.
-- Document technical and modeling decisions for future evolution.
+### Tables in the Model
+
+The data model includes the following tables:
+
+- **DadosMarketing**: Main table with customer information, purchasing behavior, and spending.
+
+| Column                          | Data Type | Description                                                             |
+|--------------------------------|-----------|-------------------------------------------------------------------------|
+| ID                             | Integer   | Unique identifier of the customer                                       |
+| Year of Birth                  | Integer   | Customer's year of birth                                                |
+| Education                      | Text      | Customer's education level                                              |
+| Marital Status                 | Text      | Customer's marital status                                               |
+| Annual Salary                  | Numeric   | Annual salary range (may contain null values)                           |
+| Children at Home              | Integer   | Number of children living with the customer                            |
+| Days Since Last Purchase       | Integer   | Number of days since the last purchase                                 |
+| Spending on Food               | Numeric   | Amount spent on food                                                   |
+| Spending on Toys               | Numeric   | Amount spent on toys                                                   |
+| Spending on Electronics        | Numeric   | Amount spent on electronics                                            |
+| Spending on Furniture          | Numeric   | Amount spent on furniture                                              |
+| Spending on Utilities          | Numeric   | Amount spent on home utilities                                         |
+| Spending on Clothing           | Numeric   | Amount spent on clothing                                               |
+| In-Store Purchases             | Integer   | Number of purchases in physical stores                                 |
+| Catalog Purchases              | Integer   | Number of purchases via catalog                                        |
+| Web Purchases                  | Integer   | Number of online purchases                                             |
+| Discounted Purchases           | Integer   | Number of purchases made using discounts or coupons                    |
+| Purchased                      | Text      | Indicates if the customer made a purchase after the campaign (“Yes”/“No”) |
+| Campaign Purchase 1 to 5       | Text      | Indicates if the customer bought during each specific campaign         |
+| RFM_Score                      | Text      | Calculated RFM score (Recency, Frequency, Monetary)                    |
+| Age                            | Integer   | Calculated column: current year – year of birth                        |
+| Age Range                      | Text      | Categorical column based on age (18–30, 31–40, etc.)                   |
 
 ---
 
-## 📐 Metric: Conversion Rate
+- **CustosCampanhas**: Auxiliary table created to simulate the cost of each marketing campaign.
+
+| Campaign    | Cost    |
+|-------------|---------|
+| Campaign 1  | 10,000  |
+| Campaign 2  | 8,000   |
+| Campaign 3  | 5,000   |
+| Campaign 4  | 3,000   |
+| Campaign 5  | 2,000   |
+
+This table was used in the ROI and CAC calculations.
+
+---
+
+- **RFM_Segmentos**: Auxiliary table that translates RFM_Score codes into customer segments.
+
+| RFM_Score | Segment                     |
+|-----------|-----------------------------|
+| 333       | VIP Customer                |
+| 332       | Loyal Customer              |
+| 331       | Potential Customer          |
+| 221       | Promising Customer          |
+| 211       | New Customer                |
+| 111       | Inactive Customer           |
+| 311       | Recovering Customer         |
+| 133       | Impulsive Customer          |
+| 123       | Low Engagement Customer     |
+
+---
+
+## 3. 🧹 Data Cleaning and Preparation
+
+The following transformations were applied during the ETL process:
+
+- Null values in **Annual Salary** were replaced by the average.
+- **Age** column created based on current year – year of birth.
+- **Age Range** column created using age categories.
+- **RFM_Score** column calculated to segment customers based on Recency, Frequency, and Monetary.
+- **CustosCampanhas** table created to simulate campaign costs and enable ROI/CAC metrics.
+- **RFM_Segmentos** table created for easier segmentation and insights.
+- Outliers were identified using scatter plots. These values were kept, assuming they may represent relevant extreme profiles.
+
+---
+
+## 4. 🧠 Key DAX Formulas
+
+### 📐 Metric: ROI (Return on Investment)
 
 **Business Concept**  
-The conversion rate represents the percentage of customers who made a purchase. It is a key performance indicator used to evaluate the success of marketing strategies and campaigns in turning potential customers into actual buyers.
+ROI measures how much return was generated for each unit of value invested in a marketing campaign.
 
 **Standard Formula**  
-Conversion Rate = Total Buyers / Total Customers
+ROI = (Revenue – Cost) / Cost
 
-**DAX in the project**
-```DAX
-.TaxaDeConversao = 
-DIVIDE(
-    COUNTROWS(FILTER(DadosMarketing, DadosMarketing[Comprou] = "Sim")),
-    COUNTROWS(DadosMarketing)
-)
-```
-
-**Why this approach**  
-The field `Comprou` contains the value `"Sim"` as a text value, which indicates a completed purchase. By filtering this value and dividing it by the total number of customers, we obtain the overall conversion rate. This can also be adapted for segmentation by marital status, campaign, country, etc.
-
----
-
-## 📐 Metric: ROI (Return on Investment)
-
-**Business Concept**  
-ROI measures the return generated for each unit of currency invested in a marketing campaign. A high ROI indicates an efficient and profitable campaign.
-
-**Standard Formula**  
-ROI = (Revenue - Cost) / Cost
-
-**DAX in the project (Campaign 1 example)**
+**DAX Example**
 ```DAX
 .ROICampanha1 = 
 VAR ClientesCampanha = 
-    FILTER(DadosMarketing, DadosMarketing[Compra na Campanha 1] = 1)
-
+    FILTER(DadosMarketing, DadosMarketing[Compra na Campanha 1] = "Sim")
 VAR ReceitaCampanha = 
     CALCULATE([.TotalGasto], ClientesCampanha)
-
 VAR CustoCampanha = 
-    LOOKUPVALUE(
-        'CustosCampanhas'[Custo],
-        'CustosCampanhas'[Campanha],
-        "Campanha 1"
-    )
-
+    LOOKUPVALUE('CustosCampanhas'[Custo], 'CustosCampanhas'[Campanha], "Campanha 1")
 RETURN
 DIVIDE(ReceitaCampanha - CustoCampanha, CustoCampanha)
 ```
 
-**Why this approach**  
-A simulated cost table (`CustosCampanhas`) was used to allow comparison and replication across multiple campaigns (1 to 5). The formula calculates ROI as a decimal (e.g., 2.8 = 280%).
+**Justification**  
+This formula helps evaluate the profitability of each campaign. The `CustosCampanhas` table allows this comparison through fictitious values.
 
 ---
 
-## 📐 Metric: CAC (Customer Acquisition Cost)
+### 📐 Metric: RFM Segmentation
 
 **Business Concept**  
-CAC represents the average cost required to acquire each customer during a marketing campaign.
+The RFM strategy classifies customers based on Recency (last purchase), Frequency (how often they buy), and Monetary (how much they spend).
 
-**Standard Formula**  
-CAC = Campaign Cost / Number of Customers Acquired
-
-**DAX in the project (Campaign 1 example)**
-```DAX
-.CACCampanha1 = 
-VAR Compradores = 
-    COUNTROWS(FILTER(DadosMarketing, DadosMarketing[Compra na Campanha 1] = "Sim"))
-
-VAR CustoCampanha = 
-    LOOKUPVALUE(
-        'CustosCampanhas'[Custo],
-        'CustosCampanhas'[Campanha],
-        "Campanha 1"
-    )
-
-RETURN
-DIVIDE(CustoCampanha, Compradores)
-```
-
-**Why this approach**  
-By using a simulated campaign cost table (`CustosCampanhas`), we enabled dynamic cost simulations and allowed CAC comparisons across all campaigns.
-
----
-
-## 📐 RFM Segmentation (Recency, Frequency, Monetary Value)
-
-**Business Concept**  
-RFM is a method for segmenting customers based on:
-
-- **Recency**: How recently they made a purchase.
-- **Frequency**: How often they purchase.
-- **Monetary**: How much they spend in total.
-
-**DAX in the project (single-column score)**
+**DAX**
 ```DAX
 RFM_Score = 
 VAR RecenciaScore = 
@@ -117,13 +129,11 @@ VAR RecenciaScore =
         DadosMarketing[Dias Desde Ultima Compra] <= 90, 2,
         1
     )
-
 VAR FreqTotal = 
     DadosMarketing[Numero de Compras na Loja] +
     DadosMarketing[Numero de Compras via Catalogo] +
     DadosMarketing[Numero de Compras na Web] +
     DadosMarketing[Numero de Compras com Desconto]
-
 VAR FrequenciaScore = 
     SWITCH(
         TRUE(),
@@ -131,7 +141,6 @@ VAR FrequenciaScore =
         FreqTotal >= 8, 2,
         1
     )
-
 VAR ValorTotal = 
     DadosMarketing[Gasto com Eletronicos] +
     DadosMarketing[Gasto com Brinquedos] +
@@ -139,7 +148,6 @@ VAR ValorTotal =
     DadosMarketing[Gasto com Utilidades] +
     DadosMarketing[Gasto com Alimentos] +
     DadosMarketing[Gasto com Vestuario]
-
 VAR MonetarioScore = 
     SWITCH(
         TRUE(),
@@ -147,36 +155,38 @@ VAR MonetarioScore =
         ValorTotal >= 1000, 2,
         1
     )
-
 RETURN
 FORMAT(RecenciaScore, "0") & FORMAT(FrequenciaScore, "0") & FORMAT(MonetarioScore, "0")
 ```
 
-**Why this approach**  
-Combining the R, F, and M scores into a single column simplifies filtering, analysis, and visual segmentation. It allows a compact representation of customer value and activity.
+**Justification**  
+The formula returns a string (e.g. "321") that allows mapping to the auxiliary table `RFM_Segmentos`, simplifying insights into customer types and behavior.
 
 ---
 
-## 📋 Auxiliary Table: RFM_Segmentos
+### 📐 Metric: Percentage with Children
 
-To translate and interpret the numeric `RFM_Score`, a support table was created with predefined classifications:
+**Business Concept**  
+Analyzing family profile may reveal different consumption patterns and help personalize campaigns.
 
-| RFM_Score | Segment         |
-|-----------|------------------|
-| 333       | VIP Client       |
-| 332       | Loyal Client     |
-| 311       | At-Risk Client   |
-| 221       | Promising Client |
-| 111       | Inactive Client  |
+**DAX**
+```DAX
+.PercentualComFilhos = 
+DIVIDE(
+    COUNTROWS(FILTER(DadosMarketing, DadosMarketing[Filhos em Casa] = 1)),
+    COUNTROWS(DadosMarketing)
+)
+```
 
-This table was linked to the main table using the `RFM_Score` column and is used in tooltips, slicers, and visual legends.
+**Justification**  
+This measure supports other analyses, such as comparing average spending between customers with and without children.
 
 ---
 
-## 🚧 Future Enhancements
+## 🔭 Future Improvements
 
-- Add Customer Lifetime Value (CLV) metric
-- Simulate churn detection based on recency
-- Add visual segmentation by country and channel
-- Apply clustering or scoring logic for deeper audience analysis
-- Improve documentation with diagrams and visual aids
+- Add Customer Lifetime Value (CLV) calculation.
+- Apply clustering based on RFM score.
+- Deepen analysis by channel (e.g., online vs. physical).
+- Evaluate seasonality in campaign effectiveness.
+- Add visual tooltips or formula breakdowns in the dashboard.
