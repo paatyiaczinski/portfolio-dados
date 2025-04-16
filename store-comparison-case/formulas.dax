@@ -1,0 +1,124 @@
+-- ===========================
+-- Total Revenue
+-- Receita Total
+-- ===========================
+-- Sum of all sales values
+-- Soma do valor total de vendas
+.ReceitaTotal =
+SUM(dados[valor])
+
+-- ===========================
+-- Profit
+-- Lucro
+-- ===========================
+-- Revenue minus total cost
+-- Diferença entre a receita e o custo total
+.Lucro =
+SUM(dados[valor]) - SUM(dados[custo_total])
+
+-- ===========================
+-- Profit Margin
+-- Margem de Lucro
+-- ===========================
+-- Profit as a percentage of total revenue
+-- Percentual de lucro sobre a receita total
+.MargemLucro =
+DIVIDE([.Lucro], [.ReceitaTotal])
+
+-- ===========================
+-- Quantity Sold
+-- Quantidade Vendida
+-- ===========================
+-- Total quantity of products sold
+-- Soma da quantidade de produtos vendidos
+.QuantidadeVendida =
+SUM(dados[quantidade])
+
+-- ===========================
+-- Average Revenue per Store
+-- Receita Média por Loja
+-- ===========================
+-- Average total revenue per store
+-- Receita total média por loja
+.MediaReceitaPorLoja =
+AVERAGEX(
+    VALUES(Dados[loja]),
+    [.ReceitaTotal]
+)
+
+-- ===========================
+-- Revenue Std. Dev. per Store
+-- Desvio Padrão da Receita por Loja
+-- ===========================
+-- Standard deviation of total revenue across stores
+-- Desvio padrão da receita total considerando todas as lojas
+.DesvioReceitaPorLoja =
+STDEVX.P(
+    VALUES(Dados[loja]),
+    [.ReceitaTotal]
+)
+
+-- ===========================
+-- Revenue Variation (%)
+-- Variação de Receita (%)
+-- ===========================
+-- Percentage change in revenue from 2022 to 2023
+-- Variação percentual da receita entre os anos de 2022 e 2023
+.VariaçãoReceita =
+VAR Vendas2022 = CALCULATE(SUM(Dados[valor]), Dados[ano] = 2022)
+VAR Vendas2023 = CALCULATE(SUM(Dados[valor]), Dados[ano] = 2023)
+RETURN DIVIDE(Vendas2023 - Vendas2022, Vendas2022) * 100
+
+-- ===========================
+-- Stores with Data in 2 Years
+-- Lojas com 2 Anos de Dados
+-- ===========================
+-- Count of years with sales data for each store
+-- Número de anos com dados de vendas por loja
+.LojaComDoisAnos =
+CALCULATE(
+    DISTINCTCOUNT(dados[ano]),
+    ALLEXCEPT(dados, dados[loja])
+)
+
+-- ===========================
+-- Store Profit (Contextual %)
+-- Lucro por Loja (% Contextual)
+-- ===========================
+-- Each store's profit as a share of its own filtered context
+-- Percentual do lucro de cada loja em relação ao próprio contexto
+.LucroPorLoja =
+DIVIDE(
+    CALCULATE(SUM(dados[valor]) - SUM(Dados[custo_total])),
+    CALCULATE(SUM(dados[valor]) - SUM(Dados[custo_total]), ALLEXCEPT(dados, dados[loja]))
+) * 100
+
+-- ===========================
+-- Store Share of Total Profit
+-- Participação no Lucro Total
+-- ===========================
+-- Percentage contribution of each store to total profit
+-- Participação percentual da loja no lucro total da empresa
+.LucroLoja =
+VAR LucroLoja = CALCULATE([.Lucro])
+VAR LucroTotal = CALCULATE([.Lucro], ALL(Dados[loja]))
+RETURN
+DIVIDE(LucroLoja, LucroTotal)
+
+-- ===========================
+-- Revenue Classification
+-- Classificação Receita por Loja
+-- ===========================
+-- Classifies stores as Above, Below, or Regular based on revenue and standard deviation
+-- Classifica as lojas como "Acima da Média", "Abaixo da Média" ou "Regular"
+.ClassificaçãoReceitaLoja =
+VAR ReceitaAtual = [.ReceitaTotal]
+VAR Media = [.MediaReceitaPorLoja]
+VAR Desvio = [.DesvioReceitaPorLoja]
+RETURN
+    SWITCH(
+        TRUE(),
+        ReceitaAtual >= Media + Desvio, "Acima da Média",
+        ReceitaAtual <= Media - Desvio, "Abaixo da Média",
+        "Regular"
+    )

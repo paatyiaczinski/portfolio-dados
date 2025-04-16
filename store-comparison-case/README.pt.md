@@ -57,7 +57,7 @@ store-comparison-case/
 
 ## 🔗 Recursos
 
-- 📊 [Relatório Público no Power BI (somente leitura)](https://app.powerbi.com/view?r=eyJrIjoiZTA3ZjA2MmEtZmJlMy00MmY1LWFhNGMtOGY1YTQ1OGUxMzg3IiwidCI6IjkwNzZiMjlhLWNmZGMtNGMyNC1iNjJmLTBiMTBiOWViMDhmYiIsImMiOjl9)
+- 📊 [Relatório Público no Power BI (somente leitura)](https://app.powerbi.com/view?r=eyJrIjoiMjQ0YzUyMDYtZTE2My00ZmQ4LTg0MWYtZjcwNTc0NTViYThmIiwidCI6IjkwNzZiMjlhLWNmZGMtNGMyNC1iNjJmLTBiMTBiOWViMDhmYiIsImMiOjl9)
 
 ---
 
