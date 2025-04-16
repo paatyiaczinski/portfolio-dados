@@ -1,0 +1,207 @@
+-- ===========================
+-- General Metrics
+-- Métricas Gerais
+-- ===========================
+
+-- Total amount spent per customer (sum of all categories)
+-- Total gasto por cliente (soma de todas as categorias)
+.TotalGasto = 
+SUMX(
+    DadosMarketing,
+    DadosMarketing[Gasto com Eletronicos] +
+    DadosMarketing[Gasto com Brinquedos] +
+    DadosMarketing[Gasto com Moveis] +
+    DadosMarketing[Gasto com Utilidades] +
+    DadosMarketing[Gasto com Alimentos] +
+    DadosMarketing[Gasto com Vestuario]
+)
+
+-- Average spend of customers who purchased
+-- Média de gasto dos clientes que compraram
+.TicketMedio = 
+AVERAGEX(
+    FILTER(DadosMarketing, DadosMarketing[Comprou] = "Sim"),
+    [.TotalGasto]
+)
+
+-- Total number of purchases (frequency)
+-- Quantidade total de compras (frequência)
+.TotalCompras(Frequência) = 
+SUMX(
+    DadosMarketing,
+    DadosMarketing[Numero de Compras na Loja] +
+    DadosMarketing[Numero de Compras via Catalogo] +
+    DadosMarketing[Numero de Compras na Web] +
+    DadosMarketing[Numero de Compras com Desconto]
+)
+
+-- Overall conversion rate
+-- Taxa de conversão geral
+.TaxaDeConversao = 
+DIVIDE(
+    COUNTROWS(FILTER(DadosMarketing, DadosMarketing[Comprou] = "Sim")),
+    COUNTROWS(DadosMarketing)
+)
+
+-- Average number of purchases per customer (based on all purchase channels)
+-- Média de compras por cliente (considerando todos os canais de compra)
+.MediaComprasPorCliente = 
+AVERAGEX(
+    DadosMarketing,
+    DadosMarketing[Numero de Compras na Loja] +
+    DadosMarketing[Numero de Compras via Catalogo] +
+    DadosMarketing[Numero de Compras na Web] +
+    DadosMarketing[Numero de Compras com Desconto]
+)
+
+-- Average number of days since the last purchase across all customers
+-- Média de dias desde a última compra entre todos os clientes
+.RecenciaMedia = 
+AVERAGE(DadosMarketing[Dias Desde Ultima Compra])
+
+-- ===========================
+-- ROI per Campaign
+-- ROI por Campanha
+-- ===========================
+
+-- ROI calculation for Campaign 1 (duplicated for campaigns 2-5)
+-- Cálculo do ROI para a Campanha 1 (replicado para campanhas 2-5)
+.ROICampanha1 = 
+VAR ClientesCampanha = 
+    FILTER(DadosMarketing, DadosMarketing[Compra na Campanha 1] = "Sim")
+VAR ReceitaCampanha = 
+    CALCULATE([.TotalGasto], ClientesCampanha)
+VAR CustoCampanha = 
+    LOOKUPVALUE('CustosCampanhas'[Custo], 'CustosCampanhas'[Campanha], "Campanha 1")
+RETURN
+DIVIDE(ReceitaCampanha - CustoCampanha, CustoCampanha)
+
+-- ===========================
+-- CAC per Campaign
+-- CAC por Campanha
+-- ===========================
+
+-- Customer Acquisition Cost for Campaign 1 (replicated for campaigns 2-5)
+-- Custo de Aquisição de Cliente da Campanha 1 (replicado para campanhas 2-5)
+.CACCampanha1 = 
+VAR Compradores = 
+    COUNTROWS(FILTER(DadosMarketing, DadosMarketing[Compra na Campanha 1] = "Sim"))
+VAR CustoCampanha = 
+    LOOKUPVALUE('CustosCampanhas'[Custo], 'CustosCampanhas'[Campanha], "Campanha 1")
+RETURN
+DIVIDE(CustoCampanha, Compradores)
+
+-- ===========================
+-- Conversion Rate per Campaign
+-- Taxa de Conversão por Campanha
+-- ===========================
+
+-- Conversion Rate for Campaign 1
+-- Taxa de Conversão da Campanha 1
+.TaxaConversaoCampanha1 = 
+DIVIDE(
+    COUNTROWS(FILTER(DadosMarketing, DadosMarketing[Compra na Campanha 1] = "Sim")),
+    COUNTROWS(DadosMarketing)
+)
+
+-- ===========================
+-- RFM Score (Calculated Column)
+-- Score RFM (Coluna Calculada)
+-- ===========================
+
+-- RFM score combining Recency, Frequency and Monetary into a 3-digit code
+-- Score RFM combinando Recência, Frequência e Valor Monetário em um código de 3 dígitos
+RFM_Score = 
+VAR RecenciaScore = 
+    SWITCH(
+        TRUE(),
+        DadosMarketing[Dias Desde Ultima Compra] <= 30, 3,
+        DadosMarketing[Dias Desde Ultima Compra] <= 90, 2,
+        1
+    )
+VAR FreqTotal = 
+    DadosMarketing[Numero de Compras na Loja] +
+    DadosMarketing[Numero de Compras via Catalogo] +
+    DadosMarketing[Numero de Compras na Web] +
+    DadosMarketing[Numero de Compras com Desconto]
+VAR FrequenciaScore = 
+    SWITCH(
+        TRUE(),
+        FreqTotal >= 15, 3,
+        FreqTotal >= 8, 2,
+        1
+    )
+VAR ValorTotal = 
+    DadosMarketing[Gasto com Eletronicos] +
+    DadosMarketing[Gasto com Brinquedos] +
+    DadosMarketing[Gasto com Moveis] +
+    DadosMarketing[Gasto com Utilidades] +
+    DadosMarketing[Gasto com Alimentos] +
+    DadosMarketing[Gasto com Vestuario]
+VAR MonetarioScore = 
+    SWITCH(
+        TRUE(),
+        ValorTotal >= 2000, 3,
+        ValorTotal >= 1000, 2,
+        1
+    )
+RETURN
+FORMAT(RecenciaScore, "0") & FORMAT(FrequenciaScore, "0") & FORMAT(MonetarioScore, "0")
+
+-- ===========================
+-- Auxiliary Table: RFM Segments
+-- Tabela Auxiliar: Segmentos RFM
+-- ===========================
+
+-- Table with translated RFM scores into segments
+-- Tabela com os scores RFM traduzidos em segmentos
+RFM_Segmentos = 
+DATATABLE(
+    "RFM_Score", STRING,
+    "Segmento", STRING,
+{
+    {"333", "Cliente VIP"},
+    {"332", "Cliente Leal"},
+    {"311", "Cliente em Risco"},
+    {"221", "Cliente Promissor"},
+    {"111", "Cliente Inativo"}
+})
+
+-- ===========================
+-- % of Clients with Children
+-- % de Clientes com Filhos em Casa
+-- ===========================
+
+-- Percentage of customers who have children living at home
+-- Porcentagem de clientes que possuem filhos em casa
+.PercentualComFilhos = 
+DIVIDE(
+    COUNTROWS(FILTER(DadosMarketing, DadosMarketing[Filhos em Casa] = 1)),
+    COUNTROWS(DadosMarketing)
+)
+
+-- ===========================
+-- Average Spend with Children
+-- Gasto Médio com Filhos
+-- ===========================
+
+-- Average total spending of customers who have children
+-- Gasto médio total dos clientes que possuem filhos
+.TicketMedioComFilhos = 
+AVERAGEX(
+    FILTER(DadosMarketing, DadosMarketing[Filhos em Casa] = 1),
+    [.TotalGasto]
+)
+
+-- ===========================
+-- Average Spend without Children
+-- Gasto Médio sem Filhos
+-- ===========================
+
+-- Average total spending of customers who do not have children
+-- Gasto médio total dos clientes que não possuem filhos
+.TicketMedioSemFilhos = 
+AVERAGEX(
+    FILTER(DadosMarketing, DadosMarketing[Filhos em Casa] = 0),
+    [.TotalGasto]
+)
