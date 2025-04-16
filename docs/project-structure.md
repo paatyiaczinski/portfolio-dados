@@ -1,3 +1,5 @@
+
+
 # 📁 Standard Project Structure
 
 All projects in this portfolio follow a structured process based on common practices in the data field. The process is divided into 4 main stages:
