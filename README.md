@@ -1,59 +1,60 @@
-📄 Read this in English: [README.en.md](./README.en.md)
+📄 Leia em português: [README.md](./README.md)
 
 
-# 📊 Portfólio de Projetos em Análise de Dados
+# 📊 Data Analysis Project Portfolio
 
-Bem-vindo ao meu portfólio de projetos em análise de dados!  
-Este repositório reúne estudos práticos focados em **resolução de problemas reais de negócio**, utilizando ferramentas como **Power BI**, **Python** e **SQL**.
+Welcome to my data analysis project portfolio!  
+This repository brings together practical projects focused on solving **real-world business problems**, using tools like **Power BI**, **Python**, and **SQL**.
 
-Todos os projetos estão organizados em pastas separadas, com suas documentações, dashboards e análises.  
-Também estou construindo um **blog técnico interno** na pasta `/posts`, com uma abordagem narrativa para cada projeto.
-
----
-
-## 🧠 Sobre Mim
-
-Sou uma profissional em transição de carreira para Análise de Dados, com formação técnica e foco em projetos práticos.  
-Este portfólio é parte do meu plano para atuar profissionalmente na área e mostrar minha capacidade de aplicar dados em contextos reais.
+Each project is organized in a separate folder, with documentation, dashboards, and insights.  
+I’m also building an internal **technical blog** in the `/posts` folder, offering a narrative approach for each project.
 
 ---
 
-## 📁 Estrutura dos Projetos
+## 🧠 About Me
 
-Todos os projetos seguem 4 etapas padronizadas:
-
-1. **Estruturação inicial e README**
-2. **Coleta e preparação dos dados**
-3. **Criação de visualizações e análises**
-4. **Documentação final e publicação**
-
-Detalhes estão em [`docs/estrutura-projetos.md`](./docs/estrutura-projetos.md)
+I’m transitioning into the field of Data Analysis, with a technical background and strong focus on practical experience.  
+This portfolio is part of my journey to showcase my ability to work with real-world data and provide business-oriented insights.
 
 ---
 
-## 📂 Projetos em andamento
+## 📁 Project Structure
 
-| Projeto | Tema | Ferramentas | Link |
-|--------|------|-------------|------|
-| 📈 Marketing | Análise de campanhas e ROI | Power BI, DAX | [`/marketing`](./marketing) |
-| 💰 Precificação | Imóveis via API e simulações | Python, Power BI | [`/precificacao`](./precificacao) |
-| 🛒 Varejo | Análise de vendas e estoque | Python puro | [`/varejo`](./varejo) |
-| 👥 Segmentação | Clusterização de clientes | Python, ML, Power BI | [`/segmentacao`](./segmentacao) |
+All projects follow the same 4-step structure:
 
----
+1. **Initial setup and README**
+2. **Data collection and preparation**
+3. **Dashboard creation and analysis**
+4. **Final documentation and publication**
 
-## 📝 Blog técnico
-
-Acesse os posts explicando cada projeto em formato de artigo:
-
-- [`posts/marketing.md`](./posts/marketing.md) – Análise de Marketing com Power BI
-- *(mais posts em breve...)*
+For more details, check [`docs/project-structure.en.md`](./docs/project-structure.en.md)
 
 ---
 
-## 📬 Contato
+## 📂 Projects in progress
+
+| Project | Theme | Tools | Link |
+|--------|-------|--------|------|
+| 📈 Marketing | Campaign analysis & ROI | Power BI, DAX | [`/marketing`](./marketing) |
+| 💰 Pricing | Real estate pricing simulations | Python, Power BI | [`/precificacao`](./precificacao) |
+| 🛒 Retail | Sales and inventory analysis | Python only | [`/varejo`](./varejo) |
+| 👥 Segmentation | Customer clustering (ML) | Python, Power BI | [`/segmentacao`](./segmentacao) |
+
+---
+
+## 📝 Technical Blog
+
+Posts explaining the projects in narrative format:
+
+- [`posts/marketing.en.md`](./posts/marketing.en.md) – Marketing Analysis with Power BI  
+- *(More posts coming soon...)*
+
+---
+
+## 📬 Contact
 
 - [LinkedIn](https://www.linkedin.com/in/patricia-iaczinski/)
 - [Email](patricia.iaczinski@gmail.com)
 
 ---
+

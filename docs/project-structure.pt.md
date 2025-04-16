@@ -34,21 +34,21 @@ Abaixo está a organização atual das pastas e arquivos do repositório:
 
 
 portfolio-dados/
-├── docs/
-│   ├── estrutura-projetos.md
-│   └── project-structure.en.md
+├── README.md                  # principal (inglês)
+├── README.pt.md               # opcional (português)
 │
-├── marketing/
-│   ├── README.md
-│   └── README.en.md
+├── docs/
+│   ├── project-structure.md          # inglês (principal)
+│   └── estrutura-projetos.pt.md      # português
 │
 ├── posts/
-│   ├── marketing.md
-│   └── marketing.en.md
+│   ├── marketing.md                  # inglês (principal)
+│   └── marketing.pt.md               # português
 │
-├── README.md
-├── README.en.md
-└── .gitignore
+├── marketing/
+│   ├── README.md                     # inglês
+│   └── README.pt.md                  # português
+
 
 ---
 
