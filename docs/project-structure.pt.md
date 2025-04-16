@@ -19,37 +19,66 @@ Todos os projetos deste portfólio seguem uma lógica de desenvolvimento dividid
 - Segmentações, destaques e análise exploratória
 - Comunicação clara dos resultados por meio de storytelling com dados
 
-## 4. 📝 Documentação Final e Publicação
-- Apresentação dos principais insights
-- Registro das fórmulas (DAX, SQL, scripts)
-- Prints ou imagens dos dashboards
-- Geração de link público (quando aplicável)
-- Post técnico associado na pasta `/posts`
+## 4. 📄 Documentação Final e Publicação
 
+- Escreva o `technical-analysis.md` explicando a lógica das métricas e da modelagem
+  - **Seções incluídas**:
+    1. Origem dos dados e formato do arquivo
+    2. Dicionário de dados e estrutura das tabelas
+    3. Regras de limpeza e preparação dos dados
+    4. 3 a 4 fórmulas DAX principais, com objetivo e explicação
+- Escreva os arquivos `insights.md` e `insights.pt.md` com as principais conclusões de negócio
+  - Cada seção do dashboard é ilustrada com uma imagem da pasta `/img`
+  - Todo insight começa com uma frase de destaque em negrito, seguida da análise
+- Exporte os visuais do dashboard para a pasta `/img`
+- Compartilhe o link público do Power BI (se aplicável)
+- Crie um post para LinkedIn/blog dentro da pasta `/posts` (opcional)
+- Faça o commit de todos os arquivos e finalize o card correspondente no GitHub Projects
 ---
 
 ## 5. 🗂️ Estrutura de Pastas do Repositório
 
 Abaixo está a organização atual das pastas e arquivos do repositório:
 
-
 portfolio-dados/
-├── README.md                  # principal (inglês)
-├── README.pt.md               # opcional (português)
+├── README.md                  # main summary (English)
+├── README.pt.md               # optional (Portuguese)
 │
 ├── docs/
-│   ├── project-structure.md          # inglês (principal)
-│   └── estrutura-projetos.pt.md      # português
+│   ├── project-structure.md
+│   ├── project-structure.pt.md
+│   ├── convention-commits.md
+│   ├── convention-commits.pt.md
+│   ├── insights.md
+│   ├── insights.pt.md
+│   ├── technical-analysis.md
+│   └── technical-analysis.pt.md
 │
 ├── posts/
-│   ├── marketing.md                  # inglês (principal)
-│   └── marketing.pt.md               # português
+│   ├── marketing.md
+│   └── store-comparison-case.md
 │
 ├── marketing/
-│   ├── README.md                     # inglês
-│   └── README.pt.md                  # português
-
-
+│   ├── README.md
+│   ├── README.pt.md
+│   ├── formulas.dax
+│   ├── img/
+│   └── docs/
+│       ├── insights.md
+│       ├── insights.pt.md
+│       ├── technical-analysis.md
+│       └── technical-analysis.pt.md
+│
+├── store-comparison-case/
+│   ├── README.md
+│   ├── README.pt.md
+│   ├── formulas.dax
+│   ├── img/
+│   └── docs/
+│       ├── insights.md
+│       ├── insights.pt.md
+│       ├── technical-analysis.md
+│       └── technical-analysis.pt.md
 ---
 
 📎 Esta estrutura padronizada visa manter a consistência entre os projetos, facilitar a leitura e demonstrar boas práticas profissionais em análise de dados.

@@ -26,7 +26,14 @@ All projects in this portfolio follow a structured process based on common pract
 
 ## 4. 📄 Final Documentation and Publication
 - Write `technical-analysis.md` explaining the logic of metrics and models
-- Write `insights.md` (EN) and `insights.pt.md` (PT) with key findings
+  - **Sections included**:
+    1. Data source and file format
+    2. Data dictionary and table structure
+    3. Data cleaning and preparation rules
+    4. 3–4 key DAX formulas, with objective and explanation
+- Write `insights.md` and `insights.pt.md` with main business conclusions
+  - Each section of the dashboard is illustrated with an image from `/img`
+  - Every insight starts with a bold takeaway sentence, followed by analysis
 - Export dashboard visuals to `/img`
 - Share Power BI public link (when applicable)
 - Create post for LinkedIn/blog under `/posts` folder (optional)
@@ -39,22 +46,44 @@ Below is the current organization of the folders and files in the `portfolio-dad
 
 
 portfolio-dados/
-├── README.md                  # principal (inglês)
-├── README.pt.md               # opcional (português)
+├── README.md                  # main summary (English)
+├── README.pt.md               # optional (Portuguese)
 │
 ├── docs/
-│   ├── project-structure.md          # inglês (principal)
-│   └── estrutura-projetos.pt.md      # português
+│   ├── project-structure.md
+│   ├── project-structure.pt.md
+│   ├── convention-commits.md
+│   ├── convention-commits.pt.md
+│   ├── insights.md
+│   ├── insights.pt.md
+│   ├── technical-analysis.md
+│   └── technical-analysis.pt.md
 │
 ├── posts/
-│   ├── marketing.md                  # inglês (principal)
-│   └── marketing.pt.md               # português
+│   ├── marketing.md
+│   └── store-comparison-case.md
 │
 ├── marketing/
-│   ├── README.md                     # inglês
-│   └── README.pt.md                  # português
-
-
+│   ├── README.md
+│   ├── README.pt.md
+│   ├── formulas.dax
+│   ├── img/
+│   └── docs/
+│       ├── insights.md
+│       ├── insights.pt.md
+│       ├── technical-analysis.md
+│       └── technical-analysis.pt.md
+│
+├── store-comparison-case/
+│   ├── README.md
+│   ├── README.pt.md
+│   ├── formulas.dax
+│   ├── img/
+│   └── docs/
+│       ├── insights.md
+│       ├── insights.pt.md
+│       ├── technical-analysis.md
+│       └── technical-analysis.pt.md
 ---
 
 📎 This standardized structure helps maintain consistency across all projects and demonstrates technical and analytical skills in a clear and professional way.

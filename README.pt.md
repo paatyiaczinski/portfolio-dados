@@ -34,20 +34,21 @@ Detalhes estão em [`docs/estrutura-projetos.md`](./docs/estrutura-projetos.md)
 ## 📂 Projetos em andamento
 
 | Projeto | Tema | Ferramentas | Link |
-|--------|------|-------------|------|
+|---------|------|-------------|------|
 | 📈 Marketing | Análise de campanhas e ROI | Power BI, DAX | [`/marketing`](./marketing) |
-| 💰 Precificação | Imóveis via API e simulações | Python, Power BI | [`/precificacao`](./precificacao) |
-| 🛒 Varejo | Análise de vendas e estoque | Python puro | [`/varejo`](./varejo) |
-| 👥 Segmentação | Clusterização de clientes | Python, ML, Power BI | [`/segmentacao`](./segmentacao) |
+| 🛍️ Store Comparison Case | Análise de vendas por loja e produto | Power BI, DAX | [`/store-comparison-case`](./store-comparison-case) |
+| 💰 Precificação | Simulações de preço no setor imobiliário | Python, Power BI | [`/precificacao`](./precificacao) |
+| 🛒 Varejo | Análise de vendas e estoque | Somente Python | [`/varejo`](./varejo) |
+| 👥 Segmentação | Clusterização de clientes com ML | Python, Power BI | [`/segmentacao`](./segmentacao) |
 
 ---
 
-## 📝 Blog técnico
+## 📝 Blog Técnico
 
-Acesse os posts explicando cada projeto em formato de artigo:
+Posts explicando cada projeto em formato narrativo:
 
-- [`posts/marketing.md`](./posts/marketing.md) – Análise de Marketing com Power BI
-- *(mais posts em breve...)*
+- [`posts/marketing.pt.md`](./posts/marketing.pt.md) – 🎯 Análise de Marketing com Power BI  
+- [`posts/store-comparison.pt.md`](./posts/store-comparison.pt.md) – 🛍️ Estudo de Caso: Vendas por Loja
 
 ---
 

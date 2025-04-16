@@ -37,10 +37,12 @@ In addition to the required analysis, a **new product idea was proposed based on
 store-comparison-case/
 ├── README.md
 ├── README.pt.md
+├── formulas.dax
 ├── docs/
 │   ├── insights.md
 │   ├── insights.pt.md
 │   └── technical-analysis.md
+│   └── technical-analysis.pt.md
 ├── img/
 ```
 

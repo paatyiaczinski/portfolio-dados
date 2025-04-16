@@ -36,6 +36,7 @@ For more details, check [`docs/project-structure.en.md`](./docs/project-structur
 | Project | Theme | Tools | Link |
 |--------|-------|--------|------|
 | 📈 Marketing | Campaign analysis & ROI | Power BI, DAX | [`/marketing`](./marketing) |
+| 🛍️ Store Comparison Case | Sales analysis across stores and products | Power BI, DAX | [`/store-comparison-case`](./store-comparison-case) |
 | 💰 Pricing | Real estate pricing simulations | Python, Power BI | [`/precificacao`](./precificacao) |
 | 🛒 Retail | Sales and inventory analysis | Python only | [`/varejo`](./varejo) |
 | 👥 Segmentation | Customer clustering (ML) | Python, Power BI | [`/segmentacao`](./segmentacao) |
@@ -44,10 +45,10 @@ For more details, check [`docs/project-structure.en.md`](./docs/project-structur
 
 ## 📝 Technical Blog
 
-Posts explaining the projects in narrative format:
+Posts explaining each project in narrative format:
 
-- [`posts/marketing.en.md`](./posts/marketing.en.md) – Marketing Analysis with Power BI  
-- *(More posts coming soon...)*
+- [`posts/marketing.en.md`](./posts/marketing.en.md) – 🎯 Marketing Analysis with Power BI  
+- [`posts/store-comparison.en.md`](./posts/store-comparison.en.md) – 🛍️ Store Sales Analysis (Case Study)
 
 ---
 
