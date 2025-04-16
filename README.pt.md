@@ -1,4 +1,4 @@
-📄 Read this in English: [README.en.md](./README.md)
+📄 Read this in English: [README.md](./README.md)
 
 
 # 📊 Portfólio de Projetos em Análise de Dados
