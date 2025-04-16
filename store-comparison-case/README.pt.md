@@ -46,13 +46,14 @@ store-comparison-case/
 
 ---
 
-## 🚧 Progresso Atual
+## ✅ Status do Projeto
+
+Todas as etapas do projeto foram concluídas:
 
 ✅ Estrutura inicial de pastas e documentação  
-✅ Criação de dashboards e insights estratégicos  
+✅ Criação do dashboard e geração de insights de negócio  
 ✅ Fórmulas DAX e KPIs personalizados  
-🔜 Adicionar post público no blog (`/posts`)
-
+✅ Post no blog criado e adicionado na pasta `/posts` 🎉
 ---
 
 ## 🔗 Recursos
