@@ -2,7 +2,10 @@
 
 > **Most customers are single, have a college degree, and are between 41 and 55 years old — a profile with high campaign engagement and strong presence in physical stores.**
 
+
+
 ![Dashboard – Customer Overview](../img/visao-cliente.png)
+
 
 ---
 

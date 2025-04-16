@@ -4,7 +4,7 @@ This project is part of a personal data analysis portfolio and aims to explore, 
 
 ## 📂 Project Structure
 
-- `formulas-bilingue.dax`: DAX measures with bilingual comments (EN and PT)
+- `formulas.dax`: DAX measures with bilingual comments (EN and PT)
 - `docs/`: documentation folder
   - `technical-analysis.md`: explanation of all metrics and supporting tables used
   - `technical-analysis.pt.md`: Portuguese version of the explanation of all metrics and supporting tables used

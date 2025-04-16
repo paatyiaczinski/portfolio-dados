@@ -6,27 +6,31 @@ All projects in this portfolio follow a structured process based on common pract
 
 ## 1. 🛠️ Initial Setup and Documentation
 - Create the project folder
-- Define the objective, scope, and tools used
-- Write the `README.md` with context and project goals
+- Define objective, scope, and tools used
+- Create the `README.md` and `README.pt.md` with context and goals
+- Create folder structure: `/docs`, `/img`, `/posts` (if blog post is planned)
 
 ## 2. 🔄 ETL – Extract, Transform, and Load
-- Collect data (via API, CSV, Excel, etc.)
-- Clean, transform, and format the data
-- Join datasets, normalize values, and prepare the data model
-- Structure the data model in Power BI or prepare datasets for analysis in Python
+- Collect data (API, CSV, Excel, manual input, etc.)
+- Clean, transform, and format the dataset
+- Join datasets and prepare data model (Power BI / Python)
+- Normalize columns, handle nulls/outliers, and standardize decimal format
+- Document data dictionary (optional)
 
-## 3. 📊 Visualizations, Analysis, and Data Storytelling
-- Build dashboards (Power BI) or plots (Python)
-- Create business metrics and KPIs
-- Apply segmentation and exploratory analysis
-- Use data storytelling to clearly communicate the results and insights
+## 3. 📊 Visualizations, Metrics, and Data Storytelling
+- Build dashboards in Power BI (or plots in Python)
+- Create KPIs and business metrics using DAX or code
+- Apply segmentation (e.g., by age, region, channel)
+- Add interactivity with filters and drill-throughs
+- Use visual storytelling to highlight patterns and outliers
 
-## 4. 📝 Final Documentation and Publication
-- Present key insights and business value
-- Document DAX formulas, SQL queries, or script logic
-- Add screenshots or visual examples
-- Share public links (when applicable)
-- Create a related blog post under `/posts`
+## 4. 📄 Final Documentation and Publication
+- Write `technical-analysis.md` explaining the logic of metrics and models
+- Write `insights.md` (EN) and `insights.pt.md` (PT) with key findings
+- Export dashboard visuals to `/img`
+- Share Power BI public link (when applicable)
+- Create post for LinkedIn/blog under `/posts` folder (optional)
+- Commit all files and close the GitHub Project milestone
 
 ---
 ## 5. 🗂️ Repository Folder Structure

@@ -4,7 +4,7 @@ Este projeto faz parte de um portfólio pessoal de análise de dados e tem como 
 
 ## 📂 Estrutura do Projeto
 
-- `formulas-bilingue.dax`: medidas DAX com comentários em inglês e português
+- `formulas.dax`: medidas DAX com comentários em inglês e português
 - `docs/`: pasta de documentação
   - `technical-analysis.md`: explicação de todas as métricas e tabelas auxiliares utilizadas (Inglês)
    - `technical-analysis.pt.md`: explicação de todas as métricas e tabelas auxiliares utilizadas (Português)
