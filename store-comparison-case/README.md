@@ -2,6 +2,10 @@
 
 This project was developed as part of a technical case study in a selection process. The goal was to analyze and compare the sales performance of physical stores of a fictional coffee brand and identify actionable business insights.
 
+## 🔗 Resources
+
+- 📊 [Power BI Public Report (View Only)](https://app.powerbi.com/view?r=eyJrIjoiMjQ0YzUyMDYtZTE2My00ZmQ4LTg0MWYtZjcwNTc0NTViYThmIiwidCI6IjkwNzZiMjlhLWNmZGMtNGMyNC1iNjJmLTBiMTBiOWViMDhmYiIsImMiOjl9)
+
 ---
 
 ## 🎯 Objective
@@ -56,11 +60,7 @@ All project stages have been completed:
 ✅ DAX formulas and custom KPIs 
 ✅ Blog post created and added under `/posts` 🎉
 
----
 
-## 🔗 Resources
-
-- 📊 [Power BI Public Report (View Only)](https://app.powerbi.com/view?r=eyJrIjoiMjQ0YzUyMDYtZTE2My00ZmQ4LTg0MWYtZjcwNTc0NTViYThmIiwidCI6IjkwNzZiMjlhLWNmZGMtNGMyNC1iNjJmLTBiMTBiOWViMDhmYiIsImMiOjl9)
 
 ---
 
