@@ -2,6 +2,7 @@
 
 Este projeto foi desenvolvido como parte de um case prático técnico durante um processo seletivo. O objetivo foi analisar e comparar o desempenho de vendas de lojas físicas de uma marca fictícia de café e identificar oportunidades estratégicas de negócio.
 
+- 📊 [Relatório Público no Power BI (somente leitura)](https://app.powerbi.com/view?r=eyJrIjoiMjQ0YzUyMDYtZTE2My00ZmQ4LTg0MWYtZjcwNTc0NTViYThmIiwidCI6IjkwNzZiMjlhLWNmZGMtNGMyNC1iNjJmLTBiMTBiOWViMDhmYiIsImMiOjl9)
 ---
 
 ## 🎯 Objetivo
@@ -58,7 +59,6 @@ Todas as etapas do projeto foram concluídas:
 
 ## 🔗 Recursos
 
-- 📊 [Relatório Público no Power BI (somente leitura)](https://app.powerbi.com/view?r=eyJrIjoiMjQ0YzUyMDYtZTE2My00ZmQ4LTg0MWYtZjcwNTc0NTViYThmIiwidCI6IjkwNzZiMjlhLWNmZGMtNGMyNC1iNjJmLTBiMTBiOWViMDhmYiIsImMiOjl9)
 
 ---
 
