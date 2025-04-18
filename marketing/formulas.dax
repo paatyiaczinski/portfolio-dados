@@ -205,3 +205,197 @@ AVERAGEX(
     FILTER(DadosMarketing, DadosMarketing[Filhos em Casa] = 0),
     [.TotalGasto]
 )
+-- ===========================
+-- At Risk Customers
+-- Clientes em Risco
+-- ===========================
+
+-- Count of customers in the "At Risk" segment  
+-- This logic was also applied to other key RFM segments such as "New Customer", "Inactive", and "VIP"
+-- Contagem de clientes com o segmento "Em Risco"  
+-- Essa lógica também foi aplicada para outros segmentos importantes, como "Novo Cliente", "Inativo" e "VIP"
+.ClientesEmRisco =
+COALESCE(
+  CALCULATE(
+    COUNTROWS(DadosMarketing),
+    RFM_Segmentos[Segmento] = "Em Risco"
+  ),
+  0
+)
+-- ===========================
+-- % of Customers per RFM Segment
+-- % de Clientes por Segmento RFM
+-- ===========================
+
+-- Measures the share of customers per segment relative to the total
+-- Mede a proporção de clientes em cada segmento em relação ao total de clientes
+.PercClientes = 
+DIVIDE(
+    COUNTROWS(DadosMarketing), 
+    CALCULATE(
+        COUNTROWS(DadosMarketing), 
+        ALL(DadosMarketing)
+    )
+)
+
+-- ===========================
+-- Average CAC Across Campaigns
+-- CAC Médio das Campanhas
+-- ===========================
+
+-- Average Customer Acquisition Cost across all 5 simulated campaigns
+-- Média do CAC entre as 5 campanhas simuladas
+.CACMedio = 
+AVERAGEX(
+    { 
+        [.CAC-Campanha1], 
+        [.CAC-Campanha2], 
+        [.CAC-Campanha3], 
+        [.CAC-Campanha4], 
+        [.CAC-Campanha5] 
+    },
+    [Value]
+)
+
+-- ===========================
+-- Average ROI Across Campaigns
+-- ROI Médio das Campanhas
+-- ===========================
+
+-- Average Return on Investment across all 5 campaigns
+-- Média do ROI entre as 5 campanhas simuladas
+.ROIMedio = 
+AVERAGEX(
+    { 
+        [.ROICampanha1], 
+        [.ROICampanha2], 
+        [.ROICampanha3], 
+        [.ROICampanha4], 
+        [.ROICampanha5] 
+    },
+    [Value]
+)
+
+-- ===========================
+-- Campaign with Highest Conversion
+-- Campanha com Maior Conversão
+-- ===========================
+
+-- Identifies the campaign with the highest conversion rate
+-- Identifica a campanha com maior taxa de conversão
+.MaiorConversaoCampanha = 
+VAR TabelaCampanhas = 
+    ADDCOLUMNS(
+        {
+            ("Campanha 1", [.TaxaConversaoCampanha1]),
+            ("Campanha 2", [.TaxaConversaoCampanha2]),
+            ("Campanha 3", [.TaxaConversaoCampanha3]),
+            ("Campanha 4", [.TaxaConversaoCampanha4]),
+            ("Campanha 5", [.TaxaConversaoCampanha5])
+        },
+        "Nome", [Value1],
+        "Conversao", [Value2]
+    )
+VAR TopCampanha = 
+    TOPN(1, TabelaCampanhas, [Conversao], DESC)
+RETURN
+    SELECTCOLUMNS(TopCampanha, "Nome", [Nome])
+
+-- ===========================
+-- Total Customers Impacted
+-- Total de Clientes Impactados
+-- ===========================
+
+-- Count of customers impacted by at least one campaign
+-- Contagem de clientes que participaram de ao menos uma campanha
+.TotalClientesImpactados = 
+CALCULATE(
+    COUNTROWS(DadosMarketing),
+    FILTER(
+        DadosMarketing,
+        DadosMarketing[Compra na Campanha 1] = 1
+        || DadosMarketing[Compra na Campanha 2] = 1
+        || DadosMarketing[Compra na Campanha 3] = 1
+        || DadosMarketing[Compra na Campanha 4] = 1
+        || DadosMarketing[Compra na Campanha 5] = 1
+    )
+)
+
+-- ===========================
+-- Campaign with Lowest CAC
+-- Campanha com Menor CAC
+-- ===========================
+
+-- Finds the campaign with the lowest Customer Acquisition Cost
+-- Identifica a campanha com menor CAC
+.TopCACCampanha = 
+VAR CampanhaMinCAC = 
+    CALCULATETABLE(
+        VALUES(CampanhasDesempenho[Campanha]),
+        CampanhasDesempenho[CAC] = MIN(CampanhasDesempenho[CAC])
+    )
+RETURN
+    CONCATENATEX(CampanhaMinCAC, CampanhasDesempenho[Campanha], ", ")
+
+-- ===========================
+-- Top Country by Total Spend
+-- País com Maior Gasto Total
+-- ===========================
+
+-- Returns the country with the highest total spending
+-- Retorna o país com maior valor de gasto agregado
+.TopPaisTotalGasto = 
+VAR TabelaResumo = 
+    SUMMARIZE(
+        ALLSELECTED(DadosMarketing[Pais]),
+        DadosMarketing[Pais],
+        "GastoTotal", SUMX(
+            FILTER(DadosMarketing, DadosMarketing[Pais] = EARLIER(DadosMarketing[Pais])),
+            [.TotalGasto]
+        )
+    )
+VAR Top =
+    TOPN(1, TabelaResumo, [GastoTotal], DESC)
+RETURN
+    SELECTCOLUMNS(Top, "País", DadosMarketing[Pais])
+
+-- ===========================
+-- Top Country by Average Ticket
+-- País com Maior Ticket Médio
+-- ===========================
+
+-- Returns the country with the highest average customer spending
+-- Retorna o país com maior ticket médio de compra
+.TopPaisTicketMedio = 
+VAR TabelaResumo = 
+    SUMMARIZE(
+        ALLSELECTED(DadosMarketing[Pais]),
+        DadosMarketing[Pais],
+        "Ticket", AVERAGEX(
+            FILTER(DadosMarketing, DadosMarketing[Pais] = EARLIER(DadosMarketing[Pais])),
+            [.TotalGasto]
+        )
+    )
+VAR Top =
+    TOPN(1, TabelaResumo, [Ticket], DESC)
+RETURN
+    SELECTCOLUMNS(Top, "País", DadosMarketing[Pais])
+
+-- ===========================
+-- Top Country by Customer Count
+-- País com Maior Número de Clientes
+-- ===========================
+
+-- Returns the country with the highest number of customers
+-- Retorna o país com maior número de clientes cadastrados
+.TopPaisClientes = 
+VAR TabelaResumo = 
+    SUMMARIZE(
+        ALLSELECTED(DadosMarketing[Pais]),
+        DadosMarketing[Pais],
+        "QtdClientes", COUNTROWS(FILTER(DadosMarketing, DadosMarketing[Pais] = EARLIER(DadosMarketing[Pais])))
+    )
+VAR Top =
+    TOPN(1, TabelaResumo, [QtdClientes], DESC)
+RETURN
+    SELECTCOLUMNS(Top, "País", DadosMarketing[Pais])

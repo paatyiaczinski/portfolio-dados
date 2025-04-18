@@ -42,35 +42,88 @@ O modelo de dados inclui as seguintes tabelas:
 
 ---
 
-- **CustosCampanhas**: Tabela auxiliar criada para simular os custos de cada campanha de marketing.
+ **CustosCampanhas**: Tabela auxiliar criada para simular os custos de cada campanha de marketing.
 
-| Campanha     | Custo   |
-|--------------|---------|
-| Campanha 1   | 10.000  |
-| Campanha 2   | 8.000   |
-| Campanha 3   | 5.000   |
-| Campanha 4   | 3.000   |
-| Campanha 5   | 2.000   |
+<details>
+  <summary>🗃️ Versão anterior: <s>CustosCampanhas</s> (obsoleta)</summary>
 
-Essa tabela é utilizada no cálculo de ROI e CAC de forma dinâmica por campanha.
+| Campanha     | <s>Custo (R$)</s> |
+|--------------|------------------|
+| Campanha 1   | <s>10.000</s>    |
+| Campanha 2   | <s>8.000</s>     |
+| Campanha 3   | <s>5.000</s>     |
+| Campanha 4   | <s>3.000</s>     |
+| Campanha 5   | <s>2.000</s>     |
+
+> ⚠️ Essa versão foi utilizada inicialmente, mas substituída durante o projeto para representar melhor os investimentos reais em campanhas.
+
+</details>
+
+| Campanha    | Custo (R$) |
+|-------------|------------|
+| Campanha 1  | 21.500     |
+| Campanha 2  | 42.200     |
+| Campanha 3  | 93.000     |
+| Campanha 4  | 98.500     |
+| Campanha 5  | 30.000     |
+
+Esses custos foram fundamentais para o cálculo realista do **CAC (Custo de Aquisição por Cliente)** e do **ROI (Retorno sobre Investimento)**.
 
 ---
 
 - **RFM_Segmentos**: Tabela auxiliar que traduz os scores da coluna `RFM_Score` em perfis de cliente.
 
-| RFM_Score | Segmento                     |
+<details>
+  <summary>🗃️ Versão anterior: <s>RFM_Segmentos</s> (obsoleta)</summary>
+
+| RFM_Score | <s>Segmento</s>              |
 |-----------|------------------------------|
-| 333       | Cliente VIP                  |
-| 332       | Cliente Leal                 |
-| 331       | Cliente Potencial            |
-| 221       | Cliente Promissor            |
-| 211       | Novo Cliente                 |
-| 111       | Cliente Inativo              |
-| 311       | Cliente em Recuperação       |
-| 133       | Cliente Impulsivo            |
-| 123       | Cliente com Baixo Engajamento|
+| 333       | <s>Cliente VIP</s>           |
+| 332       | <s>Cliente Leal</s>          |
+| 331       | <s>Cliente Potencial</s>     |
+| 221       | <s>Cliente Promissor</s>     |
+| 211       | <s>Novo Cliente</s>          |
+| 111       | <s>Inativo</s>               |
+| 311       | <s>Recuperação</s>           |
+| 133       | <s>Impulsivo</s>             |
+| 123       | <s>Baixo Engajamento</s>     |
+
+> ⚠️ Inicialmente usada para mapeamento direto. Posteriormente expandida para permitir análises mais refinadas por componente.
+
+</details>
+
+A tabela foi estendida para incluir a decomposição dos componentes de pontuação RFM – **Recência**, **Frequência** e **Monetário** – permitindo análises mais detalhadas.
+
+| RFM_Score | Segmento              | Recência | Frequência | Monetário |
+|-----------|------------------------|----------|-------------|------------|
+| 111       | Inativo                | 1        | 1           | 1          |
+| 123       | Em Risco               | 1        | 2           | 3          |
+| 211       | Novo Cliente           | 2        | 1           | 1          |
+| 221       | Promissor              | 2        | 2           | 1          |
+| 231       | Potencial              | 2        | 3           | 1          |
+| 311       | Recuperação            | 3        | 1           | 1          |
+| 331       | Campeão de Receita     | 3        | 3           | 1          |
+| 333       | VIP                    | 3        | 3           | 3          |
+
+*(Demais combinações intermediárias também foram mapeadas.)*
+
 
 ---
+
+***CampanhasDesempenho** Tabela auxiliar criada para consolidar os principais KPIs por campanha:
+
+| Campanha   | ROI   | CAC     | TaxaConversao | Clientes |
+|------------|-------|---------|----------------|----------|
+| Campanha 1 | 376%  | R$ 145  | 7,40%          | 148      |
+| Campanha 2 | 300%  | R$ 289  | 7,30%          | 146      |
+| Campanha 3 | 150%  | R$ 650  | 7,15%          | 143      |
+| Campanha 4 | 100%  | R$ 741  | 6,65%          | 133      |
+| Campanha 5 | 12%   | R$ 1.154| 1,30%          | 26       |
+
+Essa estrutura viabilizou análises comparativas, visualizações consolidadas e métricas derivadas com maior clareza.
+
+---
+
 
 ## 3. 🧹 Tratamento e Preparação dos Dados
 
@@ -83,6 +136,11 @@ Durante o processo de limpeza e transformação dos dados, foram aplicadas as se
 - Criação da tabela **CustosCampanhas** para possibilitar cálculo de ROI e CAC.
 - Criação da tabela **RFM_Segmentos** para análise qualitativa dos perfis.
 - Verificação de **outliers** com gráficos de dispersão; mantivemos os dados por representarem perfis extremos relevantes.
+- Criação da tabela **CampanhasDesempenho**, centralizando ROI, CAC, Conversão e volume de clientes por campanha.
+- Atualização dos valores de custo das campanhas** (`CustosCampanhas`) para maior realismo nos cálculos financeiros.
+- Expansão da tabela `RFM_Segmentos`** para incluir as colunas `Recência`, `Frequência` e `Monetário`, permitindo detalhamento nas segmentações.
+- 🚀 *Ponto de melhoria futuro*: permitir o detalhamento das campanhas **por segmento RFM**, usando o filtro de segmento no painel. Atualmente isso gera muitos valores em branco, e precisaria de ajustes futuros na modelagem.
+
 
 ---
 

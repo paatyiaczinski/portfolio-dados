@@ -44,33 +44,87 @@ The data model includes the following tables:
 
 - **CustosCampanhas**: Auxiliary table created to simulate the cost of each marketing campaign.
 
-| Campaign    | Cost    |
-|-------------|---------|
-| Campaign 1  | 10,000  |
-| Campaign 2  | 8,000   |
-| Campaign 3  | 5,000   |
-| Campaign 4  | 3,000   |
-| Campaign 5  | 2,000   |
+<details>
+  <summary>🗃️ Previous Version: <s>CustosCampanhas</s> (Deprecated)</summary>
 
-This table was used in the ROI and CAC calculations.
+| Campaign    | <s>Cost (BRL)</s> |
+|-------------|------------------|
+| Campaign 1  | <s>10,000</s>    |
+| Campaign 2  | <s>8,000</s>     |
+| Campaign 3  | <s>5,000</s>     |
+| Campaign 4  | <s>3,000</s>     |
+| Campaign 5  | <s>2,000</s>     |
+
+> ⚠️ This version was used initially but replaced mid-project to simulate more realistic marketing investment values.
+
+</details>
+
+| Campaign     | Cost (BRL) |
+|--------------|------------|
+| Campaign 1   | 21,500     |
+| Campaign 2   | 42,200     |
+| Campaign 3   | 93,000     |
+| Campaign 4   | 98,500     |
+| Campaign 5   | 30,000     |
+
+These updated values were essential for accurate calculation of **Customer Acquisition Cost (CAC)** and **Return on Investment (ROI)**.
 
 ---
 
 - **RFM_Segmentos**: Auxiliary table that translates RFM_Score codes into customer segments.
 
-| RFM_Score | Segment                     |
+<details>
+  <summary>🗃️ Previous Version: <s>RFM_Segmentos</s> (Deprecated)</summary>
+
+| RFM_Score | <s>Segment</s>              |
 |-----------|-----------------------------|
-| 333       | VIP Customer                |
-| 332       | Loyal Customer              |
-| 331       | Potential Customer          |
-| 221       | Promising Customer          |
-| 211       | New Customer                |
-| 111       | Inactive Customer           |
-| 311       | Recovering Customer         |
-| 133       | Impulsive Customer          |
-| 123       | Low Engagement Customer     |
+| 333       | <s>VIP Customer</s>         |
+| 332       | <s>Loyal Customer</s>       |
+| 331       | <s>Potential Customer</s>   |
+| 221       | <s>Promising Customer</s>   |
+| 211       | <s>New Customer</s>         |
+| 111       | <s>Inactive Customer</s>    |
+| 311       | <s>Recovering Customer</s>  |
+| 133       | <s>Impulsive Customer</s>   |
+| 123       | <s>Low Engagement</s>       |
+
+> ⚠️ Initially used for simple segment mapping. Later expanded for detailed customer profiling.
+
+</details>
+
+The segmentation table was expanded to include the individual **Recency**, **Frequency**, and **Monetary** scores for better customer profiling.
+
+| RFM_Score | Segment             | Recency | Frequency | Monetary |
+|-----------|---------------------|---------|------------|-----------|
+| 111       | Inactive            | 1       | 1          | 1         |
+| 123       | At Risk             | 1       | 2          | 3         |
+| 211       | New Customer        | 2       | 1          | 1         |
+| 221       | Promising           | 2       | 2          | 1         |
+| 231       | Potential           | 2       | 3          | 1         |
+| 311       | Needs Recovery      | 3       | 1          | 1         |
+| 331       | Revenue Champion    | 3       | 3          | 1         |
+| 333       | VIP                 | 3       | 3          | 3         |
+
+*(Other score combinations were also mapped.)*
 
 ---
+
+-**CampanhasDesempenho** An auxiliary table created to consolidate performance indicators for each campaign:
+
+| Campaign    | ROI    | CAC      | ConversionRate | Clients |
+|-------------|--------|----------|----------------|---------|
+| Campaign 1  | 376%   | R$ 145   | 7.40%          | 148     |
+| Campaign 2  | 300%   | R$ 289   | 7.30%          | 146     |
+| Campaign 3  | 150%   | R$ 650   | 7.15%          | 143     |
+| Campaign 4  | 100%   | R$ 741   | 6.65%          | 133     |
+| Campaign 5  | 12%    | R$ 1,154 | 1.30%          | 26      |
+
+This table enabled more intuitive dashboards, side-by-side comparisons, and clearer DAX aggregations.
+
+---
+
+
+
 
 ## 3. 🧹 Data Cleaning and Preparation
 
@@ -83,6 +137,11 @@ The following transformations were applied during the ETL process:
 - **CustosCampanhas** table created to simulate campaign costs and enable ROI/CAC metrics.
 - **RFM_Segmentos** table created for easier segmentation and insights.
 - Outliers were identified using scatter plots. These values were kept, assuming they may represent relevant extreme profiles.
+- Created the `CampanhasDesempenho` table**, consolidating campaign-level KPIs (ROI, CAC, Conversion, Volume).
+- Updated `CustosCampanhas` values** to improve realism and simulate more accurate marketing return scenarios.
+- Expanded the `RFM_Segmentos` table** with decomposed RFM scores (Recency, Frequency, Monetary).
+- 🚀 *Improvement for future implementation*: enable segmentation of campaign performance **by RFM group** using dashboard filters. This currently causes blank values and would require restructuring.
+
 
 ---
 
