@@ -1,37 +1,64 @@
-# 📈 Projeto de Análise de Marketing
+
+# 📊 Projeto de Análise de Marketing
 
 Este projeto faz parte de um portfólio pessoal de análise de dados e tem como objetivo explorar, modelar e comunicar insights sobre o comportamento de clientes, performance de campanhas de marketing e padrões de compra com base em dados simulados.
 
-## 📂 Estrutura do Projeto
+O foco está na aplicação de técnicas práticas para construção de métricas, segmentações e visualizações que auxiliem gestores de marketing na tomada de decisões.
 
-- `formulas.dax`: medidas DAX com comentários em inglês e português
-- `docs/`: pasta de documentação
-  - `technical-analysis.md`: explicação de todas as métricas e tabelas auxiliares utilizadas (Inglês)
-   - `technical-analysis.pt.md`: explicação de todas as métricas e tabelas auxiliares utilizadas (Português)
-  - `insights.md`: resumo analítico em inglês para cada seção do dashboard
-  - `insights.pt.md`: versão em português dos insights
-- `img/`: imagens exportadas dos dashboards
-
-## 🧰 Ferramentas Utilizadas
-
-- Power BI  
-- DAX  
-- Git & GitHub
-
-## 📌 Análise Técnica
-
-Todas as métricas personalizadas (como ROI, CAC, Taxa de Conversão, Ticket Médio, RFM etc.) foram calculadas usando DAX e documentadas no arquivo `technical-analysis.md`, com contexto de negócio e lógica aplicada.
-
-O arquivo `formulas.dax` contém uma versão limpa e reutilizável de todas as medidas, com comentários bilíngues para uso acadêmico e profissional.
-
-## 🚧 Progresso Atual
-
-✅ Preparação dos dados e estruturação das pastas  
-✅ Criação e documentação das métricas DAX  
-✅ Conclusão da aba “Visão Cliente” no dashboard  
-✅ Insights disponíveis em inglês e português  
-🔜 Próximas etapas: comportamento de compra, performance das campanhas e segmentação RFM
+🔗 Acesse o dashboard completo no Power BI [clicando aqui](https://app.powerbi.com/view?r=eyJrIjoiYWMwYzZkYTctMDlkNi00ZGEzLTg0MDktODcwMDI2YzFlZmNiIiwidCI6IjkwNzZiMjlhLWNmZGMtNGMyNC1iNjJmLTBiMTBiOWViMDhmYiIsImMiOjl9).  
+🔗 Veja o portfólio completo no [repositório principal](https://github.com/paatyiaczinski/portfolio).
 
 ---
 
-> *Este projeto está em desenvolvimento contínuo como parte de um portfólio profissional de análise de dados.*
+## 🧭 Visão Geral
+
+O relatório foi dividido em quatro seções:
+
+1. **Visão do Cliente** – Perfil demográfico dos consumidores e padrões gerais de compra
+2. **Comportamento de Compra** – Segmentação RFM e hábitos de consumo
+3. **Performance das Campanhas** – Análise comparativa entre campanhas de marketing
+4. **Pontos de Venda** – Comparação por localização e preferências de canal
+
+---
+
+## 🧰 Ferramentas Utilizadas
+
+- **Power BI** – Modelagem de dados, DAX e visualizações interativas
+- **Excel/CSV** – Manipulação e limpeza de dados
+- **GitHub Projects** – Gerenciamento e documentação de tarefas
+- **Markdown** – Documentação técnica
+- **Python** (em outros projetos complementares)
+
+---
+
+## 📁 Estrutura de Pastas
+
+```bash
+📦 marketing/
+├── formulas.dax                 # Todas as medidas e KPIs utilizados no projeto
+├── insights.pt.md              # Conclusões de negócio por aba do relatório
+├── technical-analysis.pt.md    # Detalhes técnicos, limpeza de dados e tabelas criadas
+├── img/                        # Capturas de tela do dashboard
+└── README.pt.md                # Apresentação do projeto (este arquivo)
+```
+
+---
+
+## 📝 Destaques
+
+✅ Segmentação RFM completa com pontuação e classificação personalizada dos clientes  
+✅ Métricas como ROI, CAC, Ticket Médio e Conversão por campanha  
+✅ Comparações entre canais de venda e comportamento por país  
+✅ Uso de filtros avançados e painel retrátil para navegação otimizada
+
+---
+
+## 💡 Próximos Passos
+
+- Criar um post com storytelling para publicação no LinkedIn
+- Explorar visualizações adicionais por produto ou canal com base no RFM
+- Avaliar a integração com dados reais (via API ou simulação)
+
+---
+
+_Projeto 100% concluído e documentado como parte do portfólio público._
