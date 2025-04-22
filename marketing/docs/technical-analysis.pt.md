@@ -124,29 +124,32 @@ Essa estrutura viabilizou análises comparativas, visualizações consolidadas e
 
 ---
 
-
 ## 3. 🧹 Tratamento e Preparação dos Dados
 
-Durante o processo de limpeza e transformação dos dados, foram aplicadas as seguintes ações:
+Durante o processo de limpeza e transformação dos dados no Power Query, foram aplicadas as seguintes ações:
 
-- Preenchimento de valores nulos da coluna **Salario Anual** com a média da coluna.
-- Criação da coluna **Idade** a partir do ano atual e ano de nascimento.
-- Criação da coluna **Faixa Etária** com base na idade.
-- Criação da coluna **RFM_Score** para segmentação de clientes com base em Recência, Frequência e Monetário.
-- Criação da tabela **CustosCampanhas** para possibilitar cálculo de ROI e CAC.
-- Criação da tabela **RFM_Segmentos** para análise qualitativa dos perfis.
-- Verificação de **outliers** com gráficos de dispersão; mantivemos os dados por representarem perfis extremos relevantes.
-- Criação da tabela **CampanhasDesempenho**, centralizando ROI, CAC, Conversão e volume de clientes por campanha.
-- Atualização dos valores de custo das campanhas** (`CustosCampanhas`) para maior realismo nos cálculos financeiros.
-- Expansão da tabela `RFM_Segmentos`** para incluir as colunas `Recência`, `Frequência` e `Monetário`, permitindo detalhamento nas segmentações.
-- 🚀 *Ponto de melhoria futuro*: permitir o detalhamento das campanhas **por segmento RFM**, usando o filtro de segmento no painel. Atualmente isso gera muitos valores em branco, e precisaria de ajustes futuros na modelagem.
-
+- Preenchimento de valores nulos da coluna **Salario Anual** com a média da coluna, visando manter o máximo de registros para análise sem distorcer significativamente a distribuição geral de renda.
+- Criação da coluna calculada **Idade** (`DAX: Idade = YEAR(NOW()) - DadosMarketing[Ano Nascimento]`).
+- Criação da coluna calculada **Faixa Etária** com base na idade para facilitar a segmentação.
+- Criação da coluna calculada **RFM_Score** para segmentação baseada em Recência, Frequência e Monetário (detalhes na seção DAX).
+- Criação da tabela auxiliar **CustosCampanhas** para possibilitar cálculo realista de ROI e CAC (detalhes na seção 2).
+- Criação da tabela auxiliar **RFM_Segmentos** para mapear scores a perfis qualitativos (detalhes na seção 2).
+- Verificação de **outliers** (ex: salários muito altos, gastos elevados): Optou-se por manter esses dados, pois representam perfis de clientes extremos, porém válidos e relevantes para a análise de segmentos como 'VIP'.
+- Criação da tabela auxiliar **CampanhasDesempenho**, centralizando KPIs calculados por campanha para facilitar visualizações comparativas.
+- **Atualização dos valores de custo das campanhas** (`CustosCampanhas`): Os custos iniciais foram revisados para refletir valores mais realistas de investimento, impactando diretamente a precisão dos cálculos de ROI e CAC. *Esta mudança foi crucial para uma avaliação de performance mais fidedigna.*
+- **Expansão da tabela `RFM_Segmentos`**: Adicionadas colunas `Recência`, `Frequência` e `Monetário` individuais para permitir análises e filtros mais granulares por cada componente do RFM. *Isso possibilitou entender melhor as características de cada segmento.*
+- 🚀 *Ponto de melhoria futuro*: Permitir o detalhamento das campanhas **por segmento RFM**, usando o filtro de segmento no painel. Atualmente isso gera muitos valores em branco, indicando a necessidade de ajustes futuros na modelagem ou tratamento de dados para garantir a integridade das análises cruzadas.
 
 ---
 
+---
+
+
 ## 4. 🧠 Principais Fórmulas DAX Criadas
 
-[As fórmulas DAX estão detalhadas separadamente no arquivo `formulas.dax`.]
+A seguir, são detalhadas algumas das principais métricas e colunas calculadas em DAX que foram fundamentais para a análise. Todas as medidas utilizadas no projeto podem ser encontradas no arquivo `formulas.dax` no repositório. ([[Link para formulas.dax, se disponível online]](https://github.com/paatyiaczinski/portifolio-dados/blob/main/marketing/formulas.dax))
+
+--- // (Restante das métricas continua abaixo)
 
 ## 📐 Métrica: Taxa de Conversão
 

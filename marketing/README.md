@@ -1,11 +1,13 @@
-# 📈 Marketing Analysis Project
+# 📊 Marketing Analysis Project: Optimizing Campaigns with Data
 
-This project is part of a personal data analytics portfolio.
-Its objective is to analyze customer profiles and behavior, measure the performance of marketing campaigns, and understand purchasing patterns using simulated data from a fictitious company.
+How can we optimize marketing investments and better target campaigns by understanding customer demographics, purchasing behavior, and responses to previous actions? This portfolio project answers these questions using a simulated marketing dataset.
 
-The project is built entirely in **Power BI**, with custom metrics developed in **DAX** and documentation that bridges technical details with business storytelling.
+The focus is on applying data analysis techniques to transform raw data into actionable insights, building essential metrics (ROI, CAC, RFM), segmenting customers, and creating interactive visualizations to assist marketing managers in making strategic decisions.
 
-🔗 [Power BI Dashboard (Public Link)](https://app.powerbi.com/view?r=eyJrIjoiYWMwYzZkYTctMDlkNi00ZGEzLTg0MDktODcwMDI2YzFlZmNiIiwidCI6IjkwNzZiMjlhLWNmZGMtNGMyNC1iNjJmLTBiMTBiOWViMDhmYiIsImMiOjl9)
+
+- 📊 [[Power BI Public Report (View Only)](https://app.powerbi.com/view?r=eyJrIjoiZWMyYWZjMTgtY2I3NS00YTNiLWIyYzAtZTQyNGZkNDQxYzBjIiwidCI6IjkwNzZiMjlhLWNmZGMtNGMyNC1iNjJmLTBiMTBiOWViMDhmYiIsImMiOjl9).  
+- 🔗 Portfolio completo no [](https://paatyiaczinski.github.io/).
+
 
 ---
 
@@ -22,80 +24,48 @@ The project is built entirely in **Power BI**, with custom metrics developed in 
 
 ```
 marketing/
-├── img/                         # All exported Power BI visuals
+├── img/                         
 ├── docs/
-│   ├── technical-analysis.md    # Technical modeling and DAX formulas (EN)
-│   ├── technical-analysis.pt.md # Versão em português
-├── posts/
-│   └── marketing.pt.md          # Blog-style narrative (PT)
-├── insights.md                  # English business insights
-├── insights.pt.md               # Versão em português dos insights
-├── formulas.dax                 # DAX formulas with bilingual comments
-└── README.md                    # Project overview (this file)
+│   ├── technical-analysis.md    
+│   ├── technical-analysis.pt.md 
+    ├── insights.md      
+    ├── insights.pt.md                        
+├── formulas.dax                 
+└── README.pt.md 
+└── README.md                    
 ```
 
 ---
+## 🧭 Overview
 
-## ⚙️ Tools Used
+The report has been divided into four sections:
 
-- Power BI (Data modeling + visualization)
-- DAX (Metrics and KPIs)
-- Git & GitHub (Version control)
-- Markdown (Documentation)
-
----
-
-## 📊 Visual Sections
-
-### 1. Customer Overview
-Segmentation by RFM, average spending, presence of children, and loyalty stage.
-
-### 2. Campaign Performance
-Metrics like ROI, CAC, Conversion Rate, and campaign comparisons.
-
-### 3. Behavioral Patterns
-Analysis of purchasing patterns by channel, segment, and geography.
-
-### 4. Sales by Country and Channel
-Total spend and customer concentration by country and purchase method.
+1. **Customer Insight** – Consumer demographics and general purchasing patterns
+2. **Purchasing Behavior** – RFM segmentation and consumer habits
+3. **Campaign Performance** – Comparative analysis between marketing campaigns
+4. **Points of Sale** – Comparison by location and channel preferences
 
 ---
 
-## 📌 Technical Documentation
+## 🧰 Tools Used
 
-All calculations are detailed in the following file:
-
-- [`docs/technical-analysis.md`](./docs/technical-analysis.md)  
-- [`docs/technical-analysis.pt.md`](./docs/technical-analysis.pt.md)
-
-These files include:
-
-- Data structure and preparation logic
-- KPI formulas with explanations
-- Modeling decisions and assumptions
+- **Power BI:**
+    - Data modeling connecting customer, purchase, and campaign information.
+    - **Power Query:** Data extraction, transformation, and cleaning (ETL).
+    - **DAX:** Creation of complex business metrics (KPIs, RFM, etc.).
+    - Interactive visualizations and dashboard design.
+- **Excel/CSV:** Initial manipulation and handling of raw data.
+- **GitHub Projects:** Workflow management and task documentation.
+- **Markdown:** Technical and insights documentation for the project.
 
 ---
 
-## 📝 Blog Post
+## 📝 Project Highlights
 
-For a business-oriented explanation of the project with visuals and storytelling, see:
-
-- [`/posts/marketing.pt.md`](./posts/marketing.pt.md) *(Portuguese)*
-
----
-
-## ✅ Project Status
-
-| Stage | Description |
-|-------|-------------|
-| ✅ | Data modeling and DAX formulas |
-| ✅ | Dashboard creation and analysis |
-| ✅ | Final documentation and visual storytelling |
-| 🔜 | Publish blog on LinkedIn / Medium |
+✅ **Complete RFM Segmentation:** Custom scoring and classification that identified key segments like 'Potential' and 'Revenue Champions', responsible for over 50% of total spending.
+✅ **Calculation of Essential Marketing Metrics:** ROI, CAC, Average Ticket, and Conversion Rate per campaign, revealing, for instance, Campaign 1 with an ROI 376% higher than the investment.
+✅ **Comparative Analyses:** Performance comparisons between sales channels (Physical Store leading with 46% of purchases) and behavior by country (USA with the highest volume, Portugal with the highest Average Ticket).
+✅ **Interactive and Optimized Dashboard:** Use of advanced filters, informative tooltips, and a retractable panel for an intuitive navigation experience in Power BI.
 
 ---
 
-## 🙋 Contact
-
-- [LinkedIn](https://www.linkedin.com/in/patricia-iaczinski/)
-- [Email](mailto:patricia.iaczinski@gmail.com)

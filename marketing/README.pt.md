@@ -1,12 +1,40 @@
 
-# 📊 Projeto de Análise de Marketing
+# 📊 Projeto de Análise de Marketing: Otimizando Campanhas com Dados
 
-Este projeto faz parte de um portfólio pessoal de análise de dados e tem como objetivo explorar, modelar e comunicar insights sobre o comportamento de clientes, performance de campanhas de marketing e padrões de compra com base em dados simulados.
+Como podemos otimizar os investimentos em marketing e direcionar melhor as campanhas compreendendo o perfil demográfico, o comportamento de compra e a resposta dos clientes às ações anteriores? Este projeto de portfólio responde a essas perguntas utilizando um conjunto de dados simulado de marketing.
 
-O foco está na aplicação de técnicas práticas para construção de métricas, segmentações e visualizações que auxiliem gestores de marketing na tomada de decisões.
+O foco está na aplicação de técnicas de análise de dados para transformar dados brutos em insights acionáveis, construindo métricas essenciais (ROI, CAC, RFM), segmentando clientes e criando visualizações interativas que auxiliem gestores de marketing na tomada de decisões estratégicas.
 
-🔗 Acesse o dashboard completo no Power BI [clicando aqui](https://app.powerbi.com/view?r=eyJrIjoiYWMwYzZkYTctMDlkNi00ZGEzLTg0MDktODcwMDI2YzFlZmNiIiwidCI6IjkwNzZiMjlhLWNmZGMtNGMyNC1iNjJmLTBiMTBiOWViMDhmYiIsImMiOjl9).  
-🔗 Veja o portfólio completo no [repositório principal](https://github.com/paatyiaczinski/portfolio).
+
+
+- 📊 [Relatório Público no Power BI (somente leitura)](https://app.powerbi.com/view?r=eyJrIjoiZWMyYWZjMTgtY2I3NS00YTNiLWIyYzAtZTQyNGZkNDQxYzBjIiwidCI6IjkwNzZiMjlhLWNmZGMtNGMyNC1iNjJmLTBiMTBiOWViMDhmYiIsImMiOjl9).  
+- 🔗 [Portfólio completo no ](https://paatyiaczinski.github.io/).
+
+---
+
+## 🧠 Perguntas de Negócio
+
+- Quem são nossos clientes mais valiosos?
+- Quais campanhas geram o melhor ROI e o menor CAC?
+- Quais são os perfis de clientes por país e canal?
+- Existem padrões de comportamento de compra por idade ou situação familiar?
+
+
+
+## 📁 Estrutura de pastas
+
+```
+marketing/
+├── img/                         
+├── docs/
+│   ├── technical-analysis.md    
+│   ├── technical-analysis.pt.md 
+    ├── insights.md      
+    ├── insights.pt.md                        
+├── formulas.dax                 
+└── README.pt.md 
+└── README.md                    
+```
 
 ---
 
@@ -21,44 +49,32 @@ O relatório foi dividido em quatro seções:
 
 ---
 
+
 ## 🧰 Ferramentas Utilizadas
 
-- **Power BI** – Modelagem de dados, DAX e visualizações interativas
-- **Excel/CSV** – Manipulação e limpeza de dados
-- **GitHub Projects** – Gerenciamento e documentação de tarefas
-- **Markdown** – Documentação técnica
-- **Python** (em outros projetos complementares)
+- **Power BI:**
+    - Modelagem de dados relacionando informações de clientes, compras e campanhas.
+    - **Power Query:** Extração, transformação e limpeza dos dados (ETL).
+    - **DAX:** Criação de métricas de negócio complexas (KPIs, RFM, etc.).
+    - Visualizações interativas e design de dashboards.
+- **Excel/CSV:** Manipulação e tratamento inicial dos dados brutos.
+- **GitHub Projects:** Gerenciamento do fluxo de trabalho e documentação de tarefas.
+- **Markdown:** Documentação técnica e de insights do projeto.
+
 
 ---
 
-## 📁 Estrutura de Pastas
 
-```bash
-📦 marketing/
-├── formulas.dax                 # Todas as medidas e KPIs utilizados no projeto
-├── insights.pt.md              # Conclusões de negócio por aba do relatório
-├── technical-analysis.pt.md    # Detalhes técnicos, limpeza de dados e tabelas criadas
-├── img/                        # Capturas de tela do dashboard
-└── README.pt.md                # Apresentação do projeto (este arquivo)
-```
+## 📝 Destaques do Projeto
+
+✅ **Segmentação RFM completa:** Classificação personalizada que identificou segmentos chave como 'Potencial' e 'Campeão de Receita', responsáveis por mais de 50% do gasto total.
+✅ **Cálculo de Métricas de Marketing Essenciais:** ROI, CAC, Ticket Médio e Taxa de Conversão por campanha, revelando, por exemplo, a Campanha 1 com um ROI 376% superior ao investimento.
+✅ **Análises Comparativas:** Comparações de desempenho entre canais de venda (Loja Física liderando com 46% das compras) e comportamento por país (EUA com maior volume, Portugal com maior Ticket Médio).
+✅ **Dashboard Interativo e Otimizado:** Uso de filtros avançados, tooltips informativos e painel retrátil para uma experiência de navegação intuitiva no Power BI.
 
 ---
 
-## 📝 Destaques
 
-✅ Segmentação RFM completa com pontuação e classificação personalizada dos clientes  
-✅ Métricas como ROI, CAC, Ticket Médio e Conversão por campanha  
-✅ Comparações entre canais de venda e comportamento por país  
-✅ Uso de filtros avançados e painel retrátil para navegação otimizada
 
----
 
-## 💡 Próximos Passos
 
-- Criar um post com storytelling para publicação no LinkedIn
-- Explorar visualizações adicionais por produto ou canal com base no RFM
-- Avaliar a integração com dados reais (via API ou simulação)
-
----
-
-_Projeto 100% concluído e documentado como parte do portfólio público._

@@ -126,26 +126,34 @@ This table enabled more intuitive dashboards, side-by-side comparisons, and clea
 
 
 
-## 3. 🧹 Data Cleaning and Preparation
+## 3. 🧹 Data Treatment and Preparation
 
-The following transformations were applied during the ETL process:
+During the data cleaning and transformation process in Power Query, the following actions were applied:
 
-- Null values in **Annual Salary** were replaced by the average.
-- **Age** column created based on current year – year of birth.
-- **Age Range** column created using age categories.
-- **RFM_Score** column calculated to segment customers based on Recency, Frequency, and Monetary.
-- **CustosCampanhas** table created to simulate campaign costs and enable ROI/CAC metrics.
-- **RFM_Segmentos** table created for easier segmentation and insights.
-- Outliers were identified using scatter plots. These values were kept, assuming they may represent relevant extreme profiles.
-- Created the `CampanhasDesempenho` table**, consolidating campaign-level KPIs (ROI, CAC, Conversion, Volume).
-- Updated `CustosCampanhas` values** to improve realism and simulate more accurate marketing return scenarios.
-- Expanded the `RFM_Segmentos` table** with decomposed RFM scores (Recency, Frequency, Monetary).
-- 🚀 *Improvement for future implementation*: enable segmentation of campaign performance **by RFM group** using dashboard filters. This currently causes blank values and would require restructuring.
+- Filling null values in the **Annual Income** column with the column's average, aiming to retain the maximum number of records for analysis without significantly distorting the overall income distribution.
+- Creation of the calculated **Age** column (`DAX: Age = YEAR(NOW()) - MarketingData[Birth Year]`).
+- Creation of the calculated **Age Group** column based on age to facilitate segmentation.
+- Creation of the calculated **RFM_Score** column for customer segmentation based on Recency, Frequency, and Monetary value (details in the DAX section).
+- Creation of the auxiliary table **CampaignCosts** to enable realistic ROI and CAC calculations (details in section 2).
+- Creation of the auxiliary table **RFM_Segments** to map scores to qualitative profiles (details in section 2).
+- **Outlier** check (e.g., very high incomes, high spending): The decision was made to keep this data as it represents extreme but valid customer profiles relevant for analyzing segments like 'VIP'.
+- Creation of the auxiliary table **CampaignPerformance**, centralizing calculated KPIs per campaign to facilitate comparative visualizations.
+- **Update of campaign cost values** (`CampaignCosts`): Initial costs were revised to reflect more realistic investment figures, directly impacting the accuracy of ROI and CAC calculations. *This change was crucial for a more reliable performance evaluation.*
+- **Expansion of the `RFM_Segments` table**: Added individual `Recency`, `Frequency`, and `Monetary` columns to allow for more granular analyses and filtering by each RFM component. *This enabled a better understanding of each segment's characteristics.*
+- 🚀 *Future Improvement Point*: Enable campaign breakdown **by RFM segment** using the segment filter on the dashboard. Currently, this results in many blank values, indicating a need for future adjustments in modeling or data handling to ensure the integrity of cross-analyses.
+
+---
 
 
 ---
 
-## 4. 🧠 Key DAX Formulas
+
+## 4. 🧠 Main DAX Formulas Created
+
+Below are details of some of the key metrics and calculated columns in DAX that were fundamental to the analysis. All measures used in the project can be found in the `formulas.dax` file within the repository. ([[Link to formulas.dax, if available online](https://github.com/paatyiaczinski/portifolio-dados/blob/main/marketing/formulas.dax)])
+
+
+--- // (Rest of the metrics continue below)
 
 ### 📐 Metric: ROI (Return on Investment)
 

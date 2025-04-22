@@ -1,5 +1,5 @@
 
-# 🧠 Customer Segmentation with Machine Learning
+# 🧠 Segmentação de clientes com aprendizado de máquina
 
 **Curso**: Microsoft Power BI Para Business Intelligence e Data Science  
 **Proposto por**: Data Science Academy
