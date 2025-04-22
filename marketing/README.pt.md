@@ -8,7 +8,7 @@ O foco está na aplicação de técnicas de análise de dados para transformar d
 
 
 - 📊 [Relatório Público no Power BI (somente leitura)](https://app.powerbi.com/view?r=eyJrIjoiZWMyYWZjMTgtY2I3NS00YTNiLWIyYzAtZTQyNGZkNDQxYzBjIiwidCI6IjkwNzZiMjlhLWNmZGMtNGMyNC1iNjJmLTBiMTBiOWViMDhmYiIsImMiOjl9).  
-- 🔗 [Portfólio completo no ](https://paatyiaczinski.github.io/).
+- 🔗 [Portfólio  ](https://paatyiaczinski.github.io/).
 
 ---
 
@@ -68,8 +68,11 @@ O relatório foi dividido em quatro seções:
 ## 📝 Destaques do Projeto
 
 ✅ **Segmentação RFM completa:** Classificação personalizada que identificou segmentos chave como 'Potencial' e 'Campeão de Receita', responsáveis por mais de 50% do gasto total.
+
 ✅ **Cálculo de Métricas de Marketing Essenciais:** ROI, CAC, Ticket Médio e Taxa de Conversão por campanha, revelando, por exemplo, a Campanha 1 com um ROI 376% superior ao investimento.
+
 ✅ **Análises Comparativas:** Comparações de desempenho entre canais de venda (Loja Física liderando com 46% das compras) e comportamento por país (EUA com maior volume, Portugal com maior Ticket Médio).
+
 ✅ **Dashboard Interativo e Otimizado:** Uso de filtros avançados, tooltips informativos e painel retrátil para uma experiência de navegação intuitiva no Power BI.
 
 ---

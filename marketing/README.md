@@ -6,7 +6,7 @@ The focus is on applying data analysis techniques to transform raw data into act
 
 
 - 📊 [[Power BI Public Report (View Only)](https://app.powerbi.com/view?r=eyJrIjoiZWMyYWZjMTgtY2I3NS00YTNiLWIyYzAtZTQyNGZkNDQxYzBjIiwidCI6IjkwNzZiMjlhLWNmZGMtNGMyNC1iNjJmLTBiMTBiOWViMDhmYiIsImMiOjl9).  
-- 🔗 Portfolio completo no [](https://paatyiaczinski.github.io/).
+- 🔗 [Portfolio ](https://paatyiaczinski.github.io/).
 
 
 ---
@@ -63,8 +63,11 @@ The report has been divided into four sections:
 ## 📝 Project Highlights
 
 ✅ **Complete RFM Segmentation:** Custom scoring and classification that identified key segments like 'Potential' and 'Revenue Champions', responsible for over 50% of total spending.
+
 ✅ **Calculation of Essential Marketing Metrics:** ROI, CAC, Average Ticket, and Conversion Rate per campaign, revealing, for instance, Campaign 1 with an ROI 376% higher than the investment.
+
 ✅ **Comparative Analyses:** Performance comparisons between sales channels (Physical Store leading with 46% of purchases) and behavior by country (USA with the highest volume, Portugal with the highest Average Ticket).
+
 ✅ **Interactive and Optimized Dashboard:** Use of advanced filters, informative tooltips, and a retractable panel for an intuitive navigation experience in Power BI.
 
 ---

@@ -1,4 +1,4 @@
-# 💡 Sumário Executivo dos Insights de Marketing
+# 💡 Resumo Insights - Análise de Marketing
 
 Esta análise integrada do comportamento do cliente, desempenho de campanhas e padrões de compra revelou oportunidades chave para otimização das estratégias de marketing. Identificamos um **público principal** (solteiro, 41-55 anos, com ensino superior) que demonstra alto engajamento, especialmente em lojas físicas. A **segmentação RFM** destacou os grupos **'Potencial' e 'Campeão de Receita'** como cruciais, concentrando mais de 50% dos gastos totais e apresentando alto ticket médio.
 

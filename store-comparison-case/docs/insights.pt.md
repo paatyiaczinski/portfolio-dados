@@ -1,6 +1,7 @@
-# 📈 Insights – Case Prático: Comparativo de Lojas
+## 📝 Sumário Executivo
 
-Este documento resume os principais insights de negócio obtidos a partir do dashboard em Power BI.
+A análise revelou um cenário de **crescimento de receita (+14%) impulsionado pela expansão agressiva (+102% no número de lojas)** entre 2022 e 2023. No entanto, essa expansão **mascarou uma queda no desempenho da maioria das lojas já existentes**, indicando um desafio de sustentabilidade orgânica. A loja de **São José dos Pinhais destacou-se como a mais lucrativa**, enquanto estados como SC, GO e MG concentraram receita. A categoria **"CAFÉS" é o pilar do faturamento (>80%)**, com margens saudáveis. Produtos específicos como **Espresso com Leite lideram vendas**, enquanto outros (Suco de Acerola, Café Inglês) apresentam baixo giro, sugerindo **oportunidades claras de otimização de portfólio e foco estratégico** em lojas e produtos de maior performance.
+
 
 ---
 

@@ -1,4 +1,4 @@
-# 💡 Executive Summary of Marketing Insights
+# 💡 Insights Summary of Marketing Analysis
 
 This integrated analysis of customer behavior, campaign performance, and purchasing patterns revealed key opportunities for optimizing marketing strategies. We identified a **core audience** (single, aged 41-55, with higher education) demonstrating high engagement, particularly in physical stores. **RFM segmentation** highlighted the **'Potential' and 'Revenue Champion'** groups as crucial, concentrating over 50% of total spending and exhibiting high average tickets.
 

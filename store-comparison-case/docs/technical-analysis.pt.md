@@ -50,17 +50,37 @@ A coluna `Data` foi criada manualmente unificando as colunas de mês e ano para 
 
 ---
 
-## 3. 🧹 Limpeza e Preparação dos Dados
+## 3. 🧹 Tratamento e Preparação dos Dados (ETL com Power Query)
 
-- A coluna `Data` foi criada unindo `mês` e `ano`, convertida para o formato de data.
-- Campos como `custo_total` e `valor` foram verificados e não continham nulos.
-- Os dados foram mantidos em nível de granularidade por produto e loja para permitir análise cruzada entre categorias e unidades.
+A etapa de Extração, Transformação e Carga (ETL) foi realizada principalmente utilizando o **Power Query** dentro do Power BI:
+
+- **Conexão e Combinação:** Os dados foram importados dos arquivos Excel.
+- **Criação da Coluna `Data`:** Foi fundamental unificar as colunas separadas de `mês` e `ano` em uma única coluna `Data` (formato `Date`). Isso foi feito manualmente via Power Query para permitir análises temporais corretas no Power BI (ex: funções Time Intelligence, embora não profundamente usadas neste case específico).
+- **Verificação de Qualidade:**
+    - **Nulos:** Verificou-se que campos cruciais como `custo_total` e `valor` não continham valores nulos.
+    - **Tipos de Dados:** Os tipos de dados de todas as colunas foram revisados e ajustados conforme necessário (ex: colunas de valor para Numérico Decimal, códigos para Texto/Inteiro).
+    - **Consistência:** A coluna chave `codigo_produto` foi verificada entre as duas tabelas para garantir a integridade do relacionamento.
+- **Manutenção da Granularidade:** Optou-se por manter a granularidade original (nível de transação por produto/loja) para permitir flexibilidade máxima nas análises e agregações no Power BI.
+
+---
+
+## 3.1. 🔗 Modelo de Dados (Power BI)
+
+Foi implementado um modelo estrela simples no Power BI, otimizado para performance e clareza:
+
+* **Tabela Fato:** `Base de Dados` (contendo as métricas de vendas, custos, quantidade).
+* **Tabela Dimensão:** `Base de Dados 2` (contendo os atributos dos produtos - grupo, subgrupo).
+* **Relacionamento:** As tabelas foram relacionadas através da coluna `codigo_produto` (relacionamento de muitos-para-um da `Base de Dados` para `Base de Dados 2`).
+* *(Opcional: Uma Tabela Calendário poderia ser adicionada para análises temporais mais avançadas, mas não foi essencial para este case específico)*.
 
 ---
 
 ## 4. 📐 Métricas DAX Selecionadas
 
-Abaixo estão quatro das principais medidas DAX utilizadas para obtenção de insights:
+*Nota: Medidas DAX neste projeto utilizam o prefixo '.' para diferenciação visual e organização.*
+
+Abaixo estão algumas das principais medidas DAX criadas para este projeto
+Todas as medidas utilizadas no projeto podem ser encontradas no arquivo `formulas.dax` no repositório. ([[Link para formulas.dax, se disponível online]](https://github.com/paatyiaczinski/portifolio-dados/blob/main/store-comparison-case\formulas.dax))
 
 ---
 
