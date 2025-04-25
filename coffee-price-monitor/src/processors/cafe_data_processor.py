@@ -67,6 +67,8 @@ class CafeDataProcessor:
 
         # Aplicar refinamentos finais
         df = self.refine_dataset(df)
+        
+        print("✅ Process finalizado",df.head(2))
 
         return df
 
@@ -77,4 +79,6 @@ class CafeDataProcessor:
         # Remover duplicatas por nome e valor
         df = df.drop_duplicates(subset=["produto", "preco_real"])
 
+        #Retorna preço para xx,xx
+        print("✅ Refine finalizado",df.head(2))
         return df
