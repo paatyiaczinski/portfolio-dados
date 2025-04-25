@@ -1,4 +1,3 @@
-
 import re
 import pandas as pd
 
@@ -50,20 +49,32 @@ class CafeDataProcessor:
     def process(self, df):
         df['preco_raw'] = df['preco_raw'].apply(self.clean_price)
         df['peso_g'] = df['produto'].apply(self.extract_weight)
-        
+
         df['preco_100g'] = df.apply(
             lambda row: self.calculate_price_per_100g(row['preco_raw'], row['peso_g']),
             axis=1
         )
-        print ("Preço 100g",df.head())
+
         df['categoria'] = df['produto'].apply(self.categorize_product)
+        df = df[df["categoria"].isin(["Café", "Cappuccino"])]
 
         if 'imagem_url' not in df.columns:
             df['imagem_url'] = None
         if 'rating' not in df.columns:
             df['rating'] = None
-        
+
         df = df.rename(columns={'preco_raw': 'preco_real'})
-        print("Essa é a header depois de fazer o process",df.head())
+
+        # Aplicar refinamentos finais
+        df = self.refine_dataset(df)
+
         return df
-        
+
+    def refine_dataset(self, df):
+        # Remover produtos sem peso detectado
+        df = df[df["peso_g"].notnull()]
+
+        # Remover duplicatas por nome e valor
+        df = df.drop_duplicates(subset=["produto", "preco_real"])
+
+        return df
