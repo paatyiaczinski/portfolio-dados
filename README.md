@@ -40,6 +40,8 @@ For more details, check [`docs/project-structure.en.md`](./docs/project-structur
 | 💰 Pricing | Real estate pricing simulations | Python, Power BI | [`/precificacao`](./precificacao) |
 | 🛒 Retail | Sales and inventory analysis | Python only | [`/varejo`](./varejo) |
 | 👥 Segmentation | Customer clustering (ML) | Python, Power BI | [`/segmentacao`](./segmentacao) |
+| ☕ Coffe Price Monitor | Scraping e analysis  | Python, Supabase, PowerBI | [`/coffee-price-monitor`](./coffee-price-monitor) |
+
 
 ---
 

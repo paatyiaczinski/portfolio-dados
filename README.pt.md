@@ -40,6 +40,7 @@ Detalhes estão em [`docs/estrutura-projetos.md`](./docs/estrutura-projetos.md)
 | 💰 Precificação | Simulações de preço no setor imobiliário | Python, Power BI | [`/precificacao`](./precificacao) |
 | 🛒 Varejo | Análise de vendas e estoque | Somente Python | [`/varejo`](./varejo) |
 | 👥 Segmentação | Clusterização de clientes com ML | Python, Power BI | [`/segmentacao`](./segmentacao) |
+| ☕ Monitoramento de Café | Scraping e análise de preços | Python, Supabase | [`/coffee-price-monitor`](./coffee-price-monitor) |
 
 ---
 
