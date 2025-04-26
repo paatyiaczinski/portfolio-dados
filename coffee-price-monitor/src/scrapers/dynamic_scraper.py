@@ -10,6 +10,15 @@ class DynamicScraper(BaseScraper):
         super().__init__(url)
         self.headless = headless
 
+        
+        options = Options()
+        if headless:
+            options.add_argument('--headless')
+        options.add_argument('--window-size=1920,1080')
+
+        service = Service()
+        self.driver = webdriver.Chrome(service=service, options=options)
+
     def get_driver(self):
         options = Options()
         if self.headless:

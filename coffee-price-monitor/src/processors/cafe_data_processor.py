@@ -74,6 +74,7 @@ class CafeDataProcessor:
 
     def refine_dataset(self, df):
         # Remover produtos sem peso detectado
+        df = df[df["preco_real"].notnull()]
         df = df[df["peso_g"].notnull()]
 
         # Remover duplicatas por nome e valor
